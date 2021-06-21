@@ -1,6 +1,35 @@
 /*jshint esversion: 6 */
 const fs = require('fs');
-function Pin(StartTime, StopTime, RunTime, CycleRate, CycleCount, UpTiming, DownTiming, haltC) {
+/*
+This code generates a sample json file that outlines how this data will be structured.
+*/
+
+interface pins{
+    StartTime:number,
+    StopTime:number,
+    RunTime:number,
+    CycleRate:number,
+    CycleCount:number,
+    UpTiming:number,
+    DownTiming:number,
+    halfCycles:number,
+}
+
+interface cells{
+    pins:pins[]
+}
+
+interface Module{
+    cells:cells[]
+}
+
+interface board{
+    esn:string,
+    time:number,
+    modules:Module[],
+}
+
+function Pin(StartTime?:number, StopTime?:number, RunTime?:number, CycleRate?:number, CycleCount?:number, UpTiming?:number, DownTiming?:number, haltC?:number) {
     this.StartTime = StartTime;
     this.StopTime = StopTime;
     this.RunTime = RunTime;
@@ -10,18 +39,19 @@ function Pin(StartTime, StopTime, RunTime, CycleRate, CycleCount, UpTiming, Down
     this.DownTiming = DownTiming;
     this.haltC = haltC;
 }
-function cell(pins) {
+function cell(pins?:pins[]) {
     this.pins = pins;
 }
-function Module(cells) {
+function Module(cells?:cells[]) {
     this.cells = cells;
 }
-function board(esn, time, modules) {
+function board(esn:string, time:number, modules:Module[]) {
     this.esn = esn;
     this.time = time;
     this.modules = modules;
 }
 function StartingDataGen() {
+
     let pin0 = new Pin();
     pin0.StartTime = 500;
     pin0.StopTime = 500;
@@ -31,6 +61,7 @@ function StartingDataGen() {
     pin0.DownTiming = 500;
     pin0.CycleCount = 500;
     pin0.haltC = 0;
+
     let pin1 = new Pin();
     pin1.StartTime = 500;
     pin1.StopTime = 500;
@@ -40,6 +71,7 @@ function StartingDataGen() {
     pin1.DownTiming = 500;
     pin1.CycleCount = 500;
     pin1.haltC = 0;
+
     let pin2 = new Pin();
     pin2.StartTime = 500;
     pin2.StopTime = 500;
@@ -49,6 +81,7 @@ function StartingDataGen() {
     pin2.DownTiming = 500;
     pin2.CycleCount = 500;
     pin2.haltC = 0;
+
     let pin3 = new Pin();
     pin3.StartTime = 500;
     pin3.StopTime = 500;
@@ -58,6 +91,7 @@ function StartingDataGen() {
     pin3.DownTiming = 500;
     pin3.CycleCount = 500;
     pin3.haltC = 0;
+
     let pin4 = new Pin();
     pin4.StartTime = 500;
     pin4.StopTime = 500;
@@ -67,6 +101,7 @@ function StartingDataGen() {
     pin4.DownTiming = 500;
     pin4.CycleCount = 500;
     pin4.haltC = 0;
+
     let pin5 = new Pin();
     pin5.StartTime = 500;
     pin5.StopTime = 500;
@@ -76,6 +111,7 @@ function StartingDataGen() {
     pin5.DownTiming = 500;
     pin5.CycleCount = 500;
     pin5.haltC = 0;
+
     let pin6 = new Pin();
     pin6.StartTime = 500;
     pin6.StopTime = 500;
@@ -85,6 +121,7 @@ function StartingDataGen() {
     pin6.DownTiming = 500;
     pin6.CycleCount = 500;
     pin6.haltC = 0;
+
     let pin7 = new Pin();
     pin7.StartTime = 500;
     pin7.StopTime = 500;
@@ -94,28 +131,40 @@ function StartingDataGen() {
     pin7.DownTiming = 500;
     pin7.CycleCount = 500;
     pin7.haltC = 0;
+
     let cell0 = new cell();
     cell0.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
+
     let cell1 = new cell();
     cell1.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
+
     let cell2 = new cell();
     cell2.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
+
     let cell3 = new cell();
     cell3.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
+
     let mod0 = new Module();
     mod0.cells = [cell0, cell1, cell2, cell3];
+
     let mod1 = new Module();
     mod1.cells = [cell0, cell1, cell2, cell3];
+
     let mod2 = new Module();
     mod2.cells = [cell0, cell1, cell2, cell3];
+
     let mod3 = new Module();
     mod3.cells = [cell0, cell1, cell2, cell3];
+
     let mod4 = new Module();
     mod4.cells = [cell0, cell1, cell2, cell3];
-    let Aboard = new board("HC52HXTN5", Date.now(), [mod0, mod1, mod2, mod3, mod4]);
+
+    let Aboard = new board("HC52HXTN5",Date.now(),[mod0, mod1, mod2, mod3, mod4]);
     return Aboard;
 }
+
 function UpdateDataGen() {
+
     let pin0 = new Pin();
     pin0.StartTime = 500;
     pin0.StopTime = 500;
@@ -125,6 +174,7 @@ function UpdateDataGen() {
     pin0.DownTiming = 500;
     pin0.CycleCount = 500;
     pin0.haltC = 0;
+
     let pin1 = new Pin();
     pin1.StartTime = 1000;
     pin1.StopTime = 500;
@@ -134,6 +184,7 @@ function UpdateDataGen() {
     pin1.DownTiming = 500;
     pin1.CycleCount = 500;
     pin1.haltC = 0;
+
     let pin2 = new Pin();
     pin2.StartTime = 500;
     pin2.StopTime = 500;
@@ -143,6 +194,7 @@ function UpdateDataGen() {
     pin2.DownTiming = 500;
     pin2.CycleCount = 500;
     pin2.haltC = 0;
+
     let pin3 = new Pin();
     pin3.StartTime = 500;
     pin3.StopTime = 500;
@@ -152,6 +204,7 @@ function UpdateDataGen() {
     pin3.DownTiming = 500;
     pin3.CycleCount = 500;
     pin3.haltC = 0;
+
     let pin4 = new Pin();
     pin4.StartTime = 500;
     pin4.StopTime = 1000;
@@ -161,6 +214,7 @@ function UpdateDataGen() {
     pin4.DownTiming = 500;
     pin4.CycleCount = 500;
     pin4.haltC = 0;
+
     let pin5 = new Pin();
     pin5.StartTime = 500;
     pin5.StopTime = 500;
@@ -170,6 +224,7 @@ function UpdateDataGen() {
     pin5.DownTiming = 500;
     pin5.CycleCount = 500;
     pin5.haltC = 0;
+
     let pin6 = new Pin();
     pin6.StartTime = 500;
     pin6.StopTime = 500;
@@ -179,6 +234,7 @@ function UpdateDataGen() {
     pin6.DownTiming = 500;
     pin6.CycleCount = 500;
     pin6.haltC = 0;
+
     let pin7 = new Pin();
     pin7.StartTime = 500;
     pin7.StopTime = 500;
@@ -188,6 +244,7 @@ function UpdateDataGen() {
     pin7.DownTiming = 500;
     pin7.CycleCount = 500;
     pin7.haltC = 0;
+
     let cell0 = new cell();
     cell0.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
     let cell1 = new cell();
@@ -206,13 +263,13 @@ function UpdateDataGen() {
     mod3.cells = [cell0, cell1, cell2, cell3];
     let mod4 = new Module();
     mod4.cells = [cell0, cell1, cell2, cell3];
-    let Aboard = new board("HC52HXTN5", Date.now(), [mod0, mod1, mod2, mod3, mod4]);
+
+    let Aboard = new board("HC52HXTN5",Date.now(),[mod0, mod1, mod2, mod3, mod4]);
     return Aboard;
 }
 function JSONSaver(FileName, json2Parse) {
     let json = JSON.stringify(json2Parse);
-    fs.writeFile(FileName + '.json', json, function (err) { if (err)
-        throw err; });
+    fs.writeFile(FileName + '.json', json, function (err) { if (err) throw err; });
 }
 JSONSaver("initial", StartingDataGen());
 JSONSaver('Updated', UpdateDataGen());
