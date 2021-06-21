@@ -48,7 +48,7 @@ exports.findDiff = function difference(Board, BoardUpdate) {
                         }
                     }
                     else {
-                        console.log("Incompatible Data: \nThe pin attributes do not mach");
+                        // console.log("Incompatible Data: \nThe pin attributes do not mach");
                     }
                 }
             }

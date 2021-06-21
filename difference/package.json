@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This returns and object with the changes in a dtf file",
   "main": "difference.js",
-  "types": "./difference/difference.d.ts",
+  "types": "/Users/john/Documents/GitHub/Testing-JSON-File-Fromat/dist/difference/difference.d.ts",
   "dependencies": {
     "browserify": "latest",
     "@types/browserify": "latest",

@@ -13,4 +13,5 @@ interface Changes {
 let data = JSON.parse(FS.readFileSync('./sample.dtf'));
 let initial = JSON.parse(FS.readFileSync('./initial.dtf'));
 
-(difference.findDiff("hello"));
+console.log(difference.findDiff(data, initial));
+
