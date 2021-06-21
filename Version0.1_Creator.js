@@ -152,7 +152,7 @@ function UpdateDataGen() {
     pin0.haltC = 0;
 
     let pin1 = new Pin();
-    pin1.StartTime = 500;
+    pin1.StartTime = 1000;
     pin1.StopTime = 500;
     pin1.RunTime = 500;
     pin1.CycleRate = 500;
@@ -164,9 +164,9 @@ function UpdateDataGen() {
     let pin2 = new Pin();
     pin2.StartTime = 500;
     pin2.StopTime = 500;
-    pin2.RunTime = 500;
+    pin2.RunTime = 1000;
     pin2.CycleRate = 500;
-    pin2.UpTiming = 500;
+    pin2.UpTiming = 1000;
     pin2.DownTiming = 500;
     pin2.CycleCount = 500;
     pin2.haltC = 0;
