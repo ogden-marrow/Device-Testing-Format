@@ -2,8 +2,8 @@
 //  when one tries to modify the json the Reference the previous version
 const fs = require('fs');
 // Read in and parse the json
-let newData = JSON.parse(fs.readFileSync('./Updated.json'));
-let OGData = JSON.parse(fs.readFileSync('./initial.json'));
+let newData = JSON.parse(fis.readFileSync('./Updated.dtdf'));
+let OGData = JSON.parse(fis.readFileSync('./initial.dtdf'));
 function arraysMatch(arr1, arr2) {
     // Check if the arrays are the same length
     if (arr1.length !== arr2.length)
@@ -21,7 +21,7 @@ function Changes(esn, mod, cell, pin, keys, values) {
     this.module = mod;
     this.cell = cell;
     this.pin = pin;
-    this.keys = [keys];
+    this.keys = keys;
     this.values = values;
 }
 function difference(Board, BoardUpdate) {
@@ -31,7 +31,8 @@ function difference(Board, BoardUpdate) {
     let OldValue;
     let NewKey;
     let NewValue;
-    let ChangesArray;
+    let change;
+    let ChangesArray = [];
     if (Board.esn == BoardUpdate.esn && Board.time != BoardUpdate.time) {
         for (let i = 0; i < Board.modules.length; i++) {
             for (let j = 0; j < Board.modules[i].cells.length; j++) {
@@ -39,14 +40,16 @@ function difference(Board, BoardUpdate) {
                     OldObject = Board.modules[i].cells[j].pins[k];
                     NewObject = BoardUpdate.modules[i].cells[j].pins[k];
                     if (arraysMatch(Object.keys(OldObject), Object.keys(NewObject))) {
+                        change = new Changes(Board.esn, i, j, k, [], []);
                         for (let z = 0; z < Object.keys(OldObject).length; z++) {
                             OldKey = Object.keys(OldObject)[z];
                             OldValue = OldObject[OldKey];
                             NewKey = Object.keys(NewObject)[z];
                             NewValue = NewObject[NewKey];
                             if (OldValue != NewValue) {
-                                console.log(NewValue);
-                                console.log(OldValue);
+                                change.keys.push(OldKey);
+                                change.values.push(NewValue);
+                                ChangesArray.push(change);
                             }
                         }
                     }
@@ -60,5 +63,6 @@ function difference(Board, BoardUpdate) {
     else {
         console.log('Not the same Hardware or are from the same time');
     }
+    return ChangesArray;
 }
-difference(OGData, newData);
+console.log(difference(OGData, newData));

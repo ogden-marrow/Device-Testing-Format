@@ -3,8 +3,8 @@
 const fs = require('fs');
 
 // Read in and parse the json
-let newData = JSON.parse(fs.readFileSync('./Updated.json'));
-let OGData = JSON.parse(fs.readFileSync('./initial.json'));
+let newData = JSON.parse(fis.readFileSync('./Updated.dtdf'));
+let OGData = JSON.parse(fis.readFileSync('./initial.dtdf'));
 
 function arraysMatch (arr1:any[], arr2:any[]) {
     // Check if the arrays are the same length
@@ -35,7 +35,7 @@ interface Changes{
     values:number[]
 }
 
-function difference(Board, BoardUpdate) {
+function difference(Board, BoardUpdate):Changes[] {
     let OldObject;
     let NewObject;
     let OldKey;
@@ -72,6 +72,7 @@ function difference(Board, BoardUpdate) {
     } else {
         console.log('Not the same Hardware or are from the same time');
     }
+    return ChangesArray;
 }
 
-difference(OGData, newData);
+console.log(difference(OGData, newData));
