@@ -1,0 +1,11 @@
+{
+  "name": "difference",
+  "version": "1.0.0",
+  "description": "This returns and object with the changes in a dtf file",
+  "main": "difference.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John E. Palenchar",
+  "license": "ISC"
+}
