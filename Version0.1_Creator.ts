@@ -283,7 +283,7 @@ function SampleBackLinkDataGen() {
     pin0.UpTiming = 500;
     pin0.DownTiming = 500;
     pin0.CycleCount = 500;
-    pin0.haltC = 0;
+
 
     let pin1 = new Pin();
     pin1.StartTime = 1000;
@@ -312,7 +312,6 @@ function SampleBackLinkDataGen() {
     pin3.CycleRate = 500;
     pin3.UpTiming = 500;
     pin3.DownTiming = 500;
-    pin3.CycleCount = 500;
     pin3.haltC = 0;
 
     let pin4 = new Pin();
@@ -340,7 +339,6 @@ function SampleBackLinkDataGen() {
     pin6.StopTime = 500;
     pin6.RunTime = 500;
     pin6.CycleRate = 500;
-    pin6.UpTiming = 500;
     pin6.DownTiming = 500;
     pin6.CycleCount = 500;
     pin6.haltC = 0;
@@ -352,7 +350,6 @@ function SampleBackLinkDataGen() {
     pin7.CycleRate = 500;
     pin7.UpTiming = 1000;
     pin7.DownTiming = 500;
-    pin7.CycleCount = 500;
     pin7.haltC = 0;
 
     let cell0 = new cell();
