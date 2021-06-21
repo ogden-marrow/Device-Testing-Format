@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "This returns and object with the changes in a dtf file",
   "main": "difference.js",
+  "types": "./difference/difference.d.ts",
+  "dependencies": {
+    "browserify": "latest",
+    "@types/browserify": "latest",
+    "typescript": "next"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
