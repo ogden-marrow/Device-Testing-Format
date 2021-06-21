@@ -2,8 +2,8 @@
 //  when one tries to modify the json the Reference the previous version
 const fs = require('fs');
 // Read in and parse the json
-let newData = JSON.parse(fis.readFileSync('./Updated.dtdf'));
-let OGData = JSON.parse(fis.readFileSync('./initial.dtdf'));
+let newData = JSON.parse(fis.readFileSync('./Updated.dtf'));
+let OGData = JSON.parse(fis.readFileSync('./initial.dtf'));
 function arraysMatch(arr1, arr2) {
     // Check if the arrays are the same length
     if (arr1.length !== arr2.length)

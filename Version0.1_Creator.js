@@ -308,6 +308,6 @@ function JSONSaver(FileName, json2Parse, extension) {
     fis.writeFile(FileName + extension, json, function (err) { if (err)
         throw err; });
 }
-JSONSaver("initial", StartingDataGen(), ".dtdf");
-JSONSaver('Updated', UpdateDataGen(), ".dtdf");
-JSONSaver('sample', SampleBackLinkDataGen(), ".dtdf");
+JSONSaver("initial", StartingDataGen(), ".dtf");
+JSONSaver('Updated', UpdateDataGen(), ".dtf");
+JSONSaver('sample', SampleBackLinkDataGen(), ".dtf");

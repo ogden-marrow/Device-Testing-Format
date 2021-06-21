@@ -3,8 +3,8 @@
 const fs = require('fs');
 
 // Read in and parse the json
-let newData = JSON.parse(fis.readFileSync('./Updated.dtdf'));
-let OGData = JSON.parse(fis.readFileSync('./initial.dtdf'));
+let newData = JSON.parse(fis.readFileSync('./Updated.dtf'));
+let OGData = JSON.parse(fis.readFileSync('./initial.dtf'));
 
 function arraysMatch (arr1:any[], arr2:any[]) {
     // Check if the arrays are the same length

@@ -2,7 +2,11 @@
 const fis = require('fs');
 /*
 This code generates a sample json file that outlines how this data will be structured.
-The extension for the file is dtdf(Device Testing Data Format)
+The extension for the file is dtf(Device Testing Format)
+dtf supports foreign keys with an implicit primary key as the esn(Electronic Serial Number) in the initial Board file. Child files do not have a primary keys. There esn is a foreign key that references that initial bard file.
+    Foreign key usage is denoted by the string "FK". Here is an example
+        let a = new bard("FK ./path to initial Board",rest of arguments);
+    If data is not supplied to an object that will be set as a back link to the pervious version of the file.
 */
 
 interface pins{
@@ -268,6 +272,7 @@ function UpdateDataGen() {
     let Aboard = new board("HC52HXTN5",Date.now(),[mod0, mod1, mod2, mod3, mod4]);
     return Aboard;
 }
+
 function SampleBackLinkDataGen() {
 
     let pin0 = new Pin();
@@ -377,6 +382,7 @@ function JSONSaver(FileName:string, json2Parse:any, extension:string) {
     let json = JSON.stringify(json2Parse);
     fis.writeFile(FileName + extension, json, function (err) { if (err) throw err; });
 }
-JSONSaver("initial", StartingDataGen(),".dtdf");
-JSONSaver('Updated', UpdateDataGen(),".dtdf");
-JSONSaver('sample', SampleBackLinkDataGen(),".dtdf");
+
+JSONSaver("initial", StartingDataGen(),".dtf");
+JSONSaver('Updated', UpdateDataGen(),".dtf");
+JSONSaver('sample', SampleBackLinkDataGen(),".dtf");
