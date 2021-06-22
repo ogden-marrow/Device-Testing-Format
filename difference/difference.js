@@ -18,7 +18,7 @@ function arraysMatch(arr1, arr2) {
     // Otherwise, return true
     return true;
 }
-exports.findDiff = function difference(Board, BoardUpdate) {
+exports.DifferenceFinder = function (Board, BoardUpdate) {
     let OldObject;
     let NewObject;
     let OldKey;

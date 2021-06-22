@@ -18,6 +18,10 @@ interface pins{
     UpTiming:number,
     DownTiming:number,
     halfCycles:number,
+    HightUp: number,
+    HightDown:number,
+    PKForce:number,
+    TipForce:number
 }
 
 interface cells{

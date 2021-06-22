@@ -28,7 +28,7 @@ function arraysMatch(arr1: any[], arr2: any[]) {
   return true;
 }
 
-exports.findDiff = function difference(Board, BoardUpdate): Changes[] {
+exports.DifferenceFinder = function (Board, BoardUpdate):Changes[] {
   let OldObject;
   let NewObject;
   let OldKey;

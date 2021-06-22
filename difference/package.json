@@ -1,12 +1,11 @@
 {
-  "name": "difference",
-  "version": "1.0.0",
+  "name": "difference_dtf",
+  "version": "1.0.3",
   "description": "This returns and object with the changes in a dtf file",
   "main": "difference.js",
-  "types": "/Users/john/Documents/GitHub/Testing-JSON-File-Fromat/dist/difference/difference.d.ts",
+  "types": "difference/difference.d.ts",
+  "private": false,
   "dependencies": {
-    "browserify": "latest",
-    "@types/browserify": "latest",
     "typescript": "next"
   },
   "scripts": {

@@ -1,12 +1,12 @@
 const FS = require('fs');
-const difference = require('./dist/difference/difference.js');
+const differ = require('difference_dtf');
 
-let data = JSON.parse(FS.readFileSync('./sample.dtf'));
+let data = JSON.parse(FS.readFileSync('file://sample.dtf'));
 let initial = JSON.parse(FS.readFileSync('./initial.dtf'));
 
-let diff = difference.findDiff(data, initial);
+let diff = differ.DifferenceFinder(data, initial);
 
 for (let i = 0; i < diff.length; i++) {
   const element = diff[i];
   console.log(element);
-}
+}  
