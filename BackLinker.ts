@@ -1,6 +1,6 @@
 const FS = require('fs');
 const differ = require('difference_dtf');
-import { Pin, Cell, Module, Board} from './dtfDescription/dtfDescription';
+import { Pin, Cell, Module, Board} from '/Documents/npmModules/dtfDescription/dtfDescription.js';
 
 let data = JSON.parse(FS.readFileSync('./sample.dtf'));
 let initial = JSON.parse(FS.readFileSync('./initial.dtf'));
