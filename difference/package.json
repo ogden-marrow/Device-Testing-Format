@@ -1,0 +1,16 @@
+{
+  "name": "difference_dtf",
+  "version": "1.0.4",
+  "description": "This returns and object with the changes in a dtf file",
+  "main": "difference.js",
+  "types": "difference.d.ts",
+  "private": false,
+  "dependencies": {
+    "typescript": "next"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John E. Palenchar",
+  "license": "ISC"
+}
