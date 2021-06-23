@@ -1,15 +1,17 @@
-const FS = require('fs');
-const differ = require('difference_dtf');
-import { Pin, Cell, Module, Board} from '/Documents/npmModules/dtfDescription/dtfDescription.js';
+import * as FS from 'fs';
+import { Pin, Cell, Module, Board} from './dtfDescription/dtfDescription';
+import * as DifferenceFinder from 'difference_dtf';
 
-let data = JSON.parse(FS.readFileSync('./sample.dtf'));
-let initial = JSON.parse(FS.readFileSync('./initial.dtf'));
+let data = JSON.parse(FS.readFileSync("./sample.dtf","utf-8"));
+let initial = JSON.parse(FS.readFileSync('./initial.dtf',"utf-8"));
 
-let diff = differ.DifferenceFinder(initial, data);
+let diff = DifferenceFinder.DifferenceFinder(initial, data);
 let NewJson = new Board(diff[0].esn,data.time);
 
 
 
 for (let i = 0; i < diff.length; i++) {
   const element = diff[i];
+  console.log(element);
+  
 }
