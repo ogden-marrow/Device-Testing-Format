@@ -3,5 +3,7 @@
     "cSpell.words": [
         "DTDF",
         "HXTN"
-    ]
+    ],
+    "eslint.format.enable": true,
+    "jshint.options": {"esversion": 6},
 }

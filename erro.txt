@@ -1,0 +1,11 @@
+insert into tb(name) values ('Error'),('[ERR_MODULE_NOT_FOUND]:'),('Cannot'),('find'),('module'),(''/Users/john/Documents/GitHub/Testing-JSON-File-Fromat/dtfDescription/dtfDescription''),('imported'),('from'),('/Users/john/Documents/GitHub/Testing-JSON-File-Fromat/BackLinker.js\nDid'),('you'),('mean'),('to'),('import'),('../dtfDescription/dtfDescription.js?\n'),('at'),('new'),('NodeError'),('(node:internal/errors:363:5)\n'),('at'),('finalizeResolution'),('(node:internal/modules/esm/resolve:321:11)\n'),('at'),('moduleResolve'),('(node:internal/modules/esm/resolve:756:10)\n'),('at'),('Loader.defaultResolve'),('[as'),('_resolve]'),('(node:internal/modules/esm/resolve:867:11)\n'),('at'),('Loader.resolve'),('(node:internal/modules/esm/loader:89:40)\n'),('at'),('Loader.getModuleJob'),('(node:internal/modules/esm/loader:242:28)\n'),('at'),('ModuleWrap.<anonymous>'),('(node:internal/modules/esm/module_job:73:40)\n'),('at'),('link'),('(node:internal/modules/esm/module_job:72:36)'),('{code:'),(''ERR_MODULE_NOT_FOUND','),('stack:'),(''Error'),('[ERR_MODULE_NOT_FOUND]:'),('Cannot'),('find'),('mod…'),('(node:internal/modules/esm/module_job:72:36)','),('message:'),(''Cannot'),('find'),('module'),(''…/dtfDescription.js?','),('…}'),('')
+    
+=========================================
+
+    最长字符：【'/Users/john/Documents/GitHub/Testing-JSON-File-Fromat/dtfDescription/dtfDescription'】，所在位置索引：【5】
+
+    每个单词前缀：【('】，后缀为：【')】
+
+    内容前缀：【insert into tb(name) values 】，后缀为：【】
+
+    =========================================

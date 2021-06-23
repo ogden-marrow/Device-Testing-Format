@@ -1,5 +1,4 @@
-/*jshint esversion: 6 */
-const fis = require('fs');
+import {JSONSaver} from './supportingJs/supporting.js'
 /*
 This code generates a sample json file that outlines how this data will be structured.
 The extension for the file is dtf(Device Testing Format)
@@ -375,11 +374,6 @@ function SampleBackLinkDataGen() {
 
   let Aboard = new board("HC52HXTN5", Date.now(), [mod0, mod1, mod2, mod3, mod4]);
   return Aboard;
-}
-
-function JSONSaver(FileName: string, json2Parse: any, extension: string) {
-  let json = JSON.stringify(json2Parse);
-  fis.writeFile(FileName + extension, json, function (err) { if (err) throw err; });
 }
 
 JSONSaver("initial", StartingDataGen(), ".dtf");

@@ -1,5 +1,4 @@
-/*jshint esversion: 6 */
-const fis = require('fs');
+import { JSONSaver } from './supportingJs/supporting.js';
 function Pin(StartTime, StopTime, RunTime, CycleRate, CycleCount, UpTiming, DownTiming, haltC) {
     this.StartTime = StartTime;
     this.StopTime = StopTime;
@@ -298,11 +297,6 @@ function SampleBackLinkDataGen() {
     mod4.cells = [cell0, cell1, cell2, cell3];
     let Aboard = new board("HC52HXTN5", Date.now(), [mod0, mod1, mod2, mod3, mod4]);
     return Aboard;
-}
-function JSONSaver(FileName, json2Parse, extension) {
-    let json = JSON.stringify(json2Parse);
-    fis.writeFile(FileName + extension, json, function (err) { if (err)
-        throw err; });
 }
 JSONSaver("initial", StartingDataGen(), ".dtf");
 JSONSaver('Updated', UpdateDataGen(), ".dtf");

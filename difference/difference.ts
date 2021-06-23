@@ -1,4 +1,4 @@
-interface Changes {
+interface DF {
   esn: string,
   module: number,
   cell: number,
@@ -28,15 +28,15 @@ function arraysMatch(arr1: any[], arr2: any[]) {
   return true;
 }
 
-function DifferenceFinder (Board, BoardUpdate):Changes[] {
+function DifferenceFinder (Board, BoardUpdate):DF[] {
   let OldObject;
   let NewObject;
   let OldKey;
   let OldValue;
   let NewKey;
   let NewValue;
-  let change: Changes;
-  let ChangesArray: Changes[] = [];
+  let change: DF;
+  let ChangesArray: DF[] = [];
   if (Board.esn == BoardUpdate.esn && Board.time != BoardUpdate.time) {
     for (let i = 0; i < Board.modules.length; i++) {
       for (let j = 0; j < Board.modules[i].cells.length; j++) {

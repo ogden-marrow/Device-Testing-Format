@@ -1,10 +1,10 @@
 {
-  "name": "difference_dtf",
-  "version": "1.0.4",
-  "description": "This returns and object with the changes in a dtf file",
-  "main": "difference.js",
+  "name": "supportingjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "supporting.js",
   "type": "module",
-  "types": "difference.d.ts",
+  "types": "supporting.d.ts",
   "dependencies": {
     "typescript": "next"
   },
