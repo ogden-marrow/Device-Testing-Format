@@ -27,7 +27,7 @@ interface board {
 declare function Pin(StartTime?: number, StopTime?: number, RunTime?: number, CycleRate?: number, CycleCount?: number, UpTiming?: number, DownTiming?: number, haltC?: number): void;
 declare function cell(pins?: pins[]): void;
 declare function Module(cells?: cells[]): void;
-declare function board(esn: string, time: number, modules: Module[]): void;
+declare function board(esn: string, time: number, modules?: Module[]): void;
 declare function StartingDataGen(): any;
 declare function UpdateDataGen(): any;
 declare function SampleBackLinkDataGen(): any;
