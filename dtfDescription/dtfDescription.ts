@@ -5,7 +5,7 @@ If data is not supplied to an object that will be set as a back link to the perv
 All keys in the initial file have to have values.
 */
 
-interface pins {
+export interface pin {
   StartTime: number,
   StopTime: number,
   RunTime: number,
@@ -20,16 +20,16 @@ interface pins {
   TipForce: number
 }
 
-interface cell {
-  pins: pins[]
+export interface cell {
+  pins: pin[]
 }
 
-interface module {
+export interface module {
   sn: string,
   cells: cell[]
 }
 
-interface board {
+export interface board {
   esn: string,
   time: number,
   modules: module[],
@@ -45,14 +45,14 @@ function Pin(StartTime?: number, StopTime?: number, RunTime?: number, CycleRate?
   this.DownTiming = DownTiming;
   this.haltC = haltC;
 }
-function Cell(pins?: pins[]) {
+function Cell(pins?: pin[]) {
   this.pins = pins;
 }
-function Module(sn: string,cells?: cell[]) {
+function Module(sn?: string,cells?: cell[]) {
   this.sn = sn;
   this.cells = cells;
 }
-function Board(esn: string, time: number, modules?: module[]) {
+function Board(esn: string, time: number, modules?: module[]){
   this.esn = esn;
   this.time = time;
   this.modules = modules;

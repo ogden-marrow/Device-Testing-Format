@@ -1,4 +1,5 @@
 import {JSONSaver} from './supportingJs/supporting.js'
+import {Pin,Cell,Module, Board} from './dtfDescription/dtfDescription.js'
 /*
 This code generates a sample json file that outlines how this data will be structured.
 The extension for the file is dtf(Device Testing Format)
@@ -6,56 +7,56 @@ If data is not supplied to an object that will be set as a back link to the perv
 All keys in the initial file have to have values.
 */
 
-interface pins {
-  StartTime: number,
-  StopTime: number,
-  RunTime: number,
-  CycleRate: number,
-  CycleCount: number,
-  UpTiming: number,
-  DownTiming: number,
-  halfCycles: number,
-  HightUp: number,
-  HightDown: number,
-  PKForce: number,
-  TipForce: number
-}
+// interface pins {
+//   StartTime: number,
+//   StopTime: number,
+//   RunTime: number,
+//   CycleRate: number,
+//   CycleCount: number,
+//   UpTiming: number,
+//   DownTiming: number,
+//   halfCycles: number,
+//   HightUp: number,
+//   HightDown: number,
+//   PKForce: number,
+//   TipForce: number
+// }
 
-interface cells {
-  pins: pins[]
-}
+// interface cells {
+//   pins: pins[]
+// }
 
-interface Module {
-  cells: cells[]
-}
+// interface Module {
+//   cells: cells[]
+// }
 
-interface board {
-  esn: string,
-  time: number,
-  modules: Module[],
-}
+// interface board {
+//   esn: string,
+//   time: number,
+//   modules: Module[],
+// }
 
-function Pin(StartTime?: number, StopTime?: number, RunTime?: number, CycleRate?: number, CycleCount?: number, UpTiming?: number, DownTiming?: number, haltC?: number) {
-  this.StartTime = StartTime;
-  this.StopTime = StopTime;
-  this.RunTime = RunTime;
-  this.CycleRate = CycleRate;
-  this.CycleCount = CycleCount;
-  this.UpTiming = UpTiming;
-  this.DownTiming = DownTiming;
-  this.haltC = haltC;
-}
-function cell(pins?: pins[]) {
-  this.pins = pins;
-}
-function Module(cells?: cells[]) {
-  this.cells = cells;
-}
-function board(esn: string, time: number, modules?: Module[]) {
-  this.esn = esn;
-  this.time = time;
-  this.modules = modules;
-}
+// function Pin(StartTime?: number, StopTime?: number, RunTime?: number, CycleRate?: number, CycleCount?: number, UpTiming?: number, DownTiming?: number, haltC?: number) {
+//   this.StartTime = StartTime;
+//   this.StopTime = StopTime;
+//   this.RunTime = RunTime;
+//   this.CycleRate = CycleRate;
+//   this.CycleCount = CycleCount;
+//   this.UpTiming = UpTiming;
+//   this.DownTiming = DownTiming;
+//   this.haltC = haltC;
+// }
+// function cell(pins?: pins[]) {
+//   this.pins = pins;
+// }
+// function Module(cells?: cells[]) {
+//   this.cells = cells;
+// }
+// function Board(esn: string, time: number, modules?: Module[]) {
+//   this.esn = esn;
+//   this.time = time;
+//   this.modules = modules;
+// }
 function StartingDataGen() {
 
   let pin0 = new Pin();
@@ -138,16 +139,16 @@ function StartingDataGen() {
   pin7.CycleCount = 500;
   pin7.haltC = 0;
 
-  let cell0 = new cell();
+  let cell0 = new Cell();
   cell0.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
 
-  let cell1 = new cell();
+  let cell1 = new Cell();
   cell1.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
 
-  let cell2 = new cell();
+  let cell2 = new Cell();
   cell2.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
 
-  let cell3 = new cell();
+  let cell3 = new Cell();
   cell3.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
 
   let mod0 = new Module();
@@ -165,7 +166,7 @@ function StartingDataGen() {
   let mod4 = new Module();
   mod4.cells = [cell0, cell1, cell2, cell3];
 
-  let Aboard = new board("HC52HXTN5", Date.now(), [mod0, mod1, mod2, mod3, mod4]);
+  let Aboard = new Board("HC52HXTN5", Date.now(), [mod0, mod1, mod2, mod3, mod4]);
   return Aboard;
 }
 
@@ -251,13 +252,13 @@ function UpdateDataGen() {
   pin7.CycleCount = 500;
   pin7.haltC = 0;
 
-  let cell0 = new cell();
+  let cell0 = new Cell();
   cell0.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
-  let cell1 = new cell();
+  let cell1 = new Cell();
   cell1.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
-  let cell2 = new cell();
+  let cell2 = new Cell();
   cell2.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
-  let cell3 = new cell();
+  let cell3 = new Cell();
   cell3.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
   let mod0 = new Module();
   mod0.cells = [cell0, cell1, cell2, cell3];
@@ -270,7 +271,7 @@ function UpdateDataGen() {
   let mod4 = new Module();
   mod4.cells = [cell0, cell1, cell2, cell3];
 
-  let Aboard = new board("HC52HXTN5", Date.now(), [mod0, mod1, mod2, mod3, mod4]);
+  let Aboard = new Board("HC52HXTN5", Date.now(), [mod0, mod1, mod2, mod3, mod4]);
   return Aboard;
 }
 
@@ -353,13 +354,13 @@ function SampleBackLinkDataGen() {
   pin7.DownTiming = 500;
   pin7.haltC = 0;
 
-  let cell0 = new cell();
+  let cell0 = new Cell();
   cell0.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
-  let cell1 = new cell();
+  let cell1 = new Cell();
   cell1.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
-  let cell2 = new cell();
+  let cell2 = new Cell();
   cell2.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
-  let cell3 = new cell();
+  let cell3 = new Cell();
   cell3.pins = [pin0, pin1, pin2, pin3, pin4, pin5, pin6, pin7];
   let mod0 = new Module();
   mod0.cells = [cell0, cell1, cell2, cell3];
@@ -372,7 +373,7 @@ function SampleBackLinkDataGen() {
   let mod4 = new Module();
   mod4.cells = [cell0, cell1, cell2, cell3];
 
-  let Aboard = new board("HC52HXTN5", Date.now(), [mod0, mod1, mod2, mod3, mod4]);
+  let Aboard = new Board("HC52HXTN5", Date.now(), [mod0, mod1, mod2, mod3, mod4]);
   return Aboard;
 }
 
