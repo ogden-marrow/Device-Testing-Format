@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ogden-marrow/Testing-JSON-File-Format/issues"
   },
-  "homepage": "https://github.com/ogden-marrow/Testing-JSON-File-Format#readme"
+  "homepage": "https://github.com/ogden-marrow/Testing-JSON-File-Format#readme",
+  "dependencies": {
+    "typescript": "^4.3.4"
+  }
 }
