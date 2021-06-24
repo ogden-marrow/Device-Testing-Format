@@ -1,0 +1,16 @@
+{
+  "name": "supportingjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "supporting.js",
+  "type": "module",
+  "types": "supporting.d.ts",
+  "dependencies": {
+    "typescript": "next"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John E. Palenchar",
+  "license": "ISC"
+}

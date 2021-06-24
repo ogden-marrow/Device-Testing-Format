@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "watch": true,
+        "allowJs": true,
+        // Generate d.ts files
+        "declaration": true,
+    }
+}
