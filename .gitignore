@@ -1,11 +1,10 @@
 #mac os files
 .DS_Store
 
-./node_modules/
+node_modules
 
 #Becasue this is a typescript project I will not inclued the copiled js files.
 
 *.js
 *.d.ts
 erro.txt
-dtfDescription/dtfDescription.js
