@@ -35,7 +35,7 @@ function emptyPins(): pin[] {
   return pins
 }
 
-function arraysMatch(arr1: any[], arr2: any[]) {
+function arraysMatch(arr1: any[], arr2: any[]): boolean {
   // Check if the arrays are the same length
   if (arr1.length !== arr2.length) return false;
   // Check if all items exist and are in the same order
@@ -46,4 +46,9 @@ function arraysMatch(arr1: any[], arr2: any[]) {
   return true;
 }
 
-export { JSONSaver, emptyBoard, arraysMatch}
+function dtfParse(path: string): board {
+  let data: board = JSON.parse(fis.readFileSync(path, "utf-8"));
+  return data;
+}
+
+export { JSONSaver, emptyBoard, arraysMatch, dtfParse }

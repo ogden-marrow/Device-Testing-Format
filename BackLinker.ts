@@ -3,14 +3,9 @@ import { board } from './dtfDescription/dtfDescription.js'
 import * as DF from './difference/difference.js';
 import { emptyBoard } from './supportingJs/supporting.js';
 
-function UpdateObject(initialData:string, newData:string):board {
-  let data = JSON.parse(FS.readFileSync(newData, "utf-8"));
-  let initial = JSON.parse(FS.readFileSync(initialData, "utf-8"));
-
+function UpdateObject(initial: board, data: board): board {
   let diff = DF.DifferenceFinder(initial, data);
-
-  let board:board = emptyBoard(diff[0].esn, initial.time);
-
+  let board: board = emptyBoard(diff[0].esn, initial.time);
   for (let i = 0; i < diff.length; i++) {
     for (let j = 0; j < diff[i].keys.length; j++) {
       let key = diff[i].keys[j];
@@ -20,4 +15,4 @@ function UpdateObject(initialData:string, newData:string):board {
   return board;
 }
 
-export {UpdateObject};
+export { UpdateObject };

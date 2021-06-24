@@ -1,7 +1,7 @@
 import {arraysMatch} from '../supportingJs/supporting.js';
-import {DF,Changes} from '../dtfDescription/dtfDescription.js';
+import {DF,Changes,board} from '../dtfDescription/dtfDescription.js';
 
-function DifferenceFinder (Board, BoardUpdate):DF[] {
+function DifferenceFinder (Board:board, BoardUpdate:board):DF[] {
   let OldObject;
   let NewObject;
   let OldKey;
