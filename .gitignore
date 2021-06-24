@@ -10,3 +10,6 @@ node_modules
 *.js
 *.d.ts
 erro.txt
+
+#test files for me
+./dataFetcher/testing.*
