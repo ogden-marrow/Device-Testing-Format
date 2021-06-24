@@ -1,3 +1,7 @@
+/*
+  @deprecated As of version 0.5 this file is will not be used and in version 0.6 it will be removed.
+  Work on this file is stopped.
+*/
 import {JSONSaver} from './supportingJs/supporting.js'
 import {Pin,Cell,Module, Board} from './dtfDescription/dtfDescription.js'
 /*

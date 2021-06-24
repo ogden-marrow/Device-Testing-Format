@@ -1,12 +1,11 @@
 /*jshint esversion: 6 */
 //when one tries to modify the json the Reference the previous version
-const fs = require('fs');
 
-const Diff = require('difference');
-
+import * as fs from 'fs';
+import {UpdateObject} from './BackLinker.js'
+import {JSONSaver} from './supportingJs/supporting.js'
 // Read in and parse the json
-let newData = JSON.parse(fs.readFileSync('./sample.dtf'));
-let OGData = JSON.parse(fs.readFileSync('./initial.dtf'));
+let newData = JSON.parse(fs.readFileSync('./sample.dtf',"utf-8"));
+let OGData = JSON.parse(fs.readFileSync('./initial.dtf', "utf-8"));
 
-
-console.log(Diff.findDiff(OGData, newData));
+JSONSaver('backLinked',UpdateObject("./initial.dtf","./sample.dtf"),".dtf")
