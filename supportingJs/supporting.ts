@@ -84,7 +84,7 @@ function findFromESN(esn: string, Time?: number): board {
   return finalBoard;
 }
 
-function findLatestOfModule(Board: board, ModNumber: number): module{
+function findLatestOfModule(Board: board, ModNumber: number): board{
   let dtfFlies = fis.readdirSync("./").filter(file => file.includes('.dtf'));
   let finalPath: string;
   let boardTime = 0;
@@ -98,24 +98,40 @@ function findLatestOfModule(Board: board, ModNumber: number): module{
       }
     }}
   });
-  return dtfParse(finalPath).modules[ModNumber];
+  return dtfParse(finalPath);
 }
 
-function findLatestOfCell(Board: board, ModNumber: number, Cell: number): cell{
+function findLatestOfCell(Board: board, ModNumber: number, Cell: number): board{
   let dtfFlies = fis.readdirSync("./").filter(file => file.includes('.dtf'));
   let finalPath: string;
   let boardTime = 0;
   dtfFlies.forEach(element => {
     let testBoard = findObjectFromPath(element, "esn", Board.esn);
     if (typeof(testBoard) != 'undefined'){
-    if (Object.keys(testBoard.modules[ModNumber]).length != 0){
+    if (Object.keys(testBoard.modules[ModNumber].cells[Cell]).length != 0){
       if (testBoard.time > boardTime){
         finalPath = element;
         boardTime = testBoard.time;
       }
     }}
   });
-  return dtfParse(finalPath).modules[ModNumber].cells[Cell];
+  return dtfParse(finalPath);
+}
+function findLatestOfPin(Board: board, ModNumber: number, Cell: number, Pin: number): board{
+  let dtfFlies = fis.readdirSync("./").filter(file => file.includes('.dtf'));
+  let finalPath: string;
+  let boardTime = 0;
+  dtfFlies.forEach(element => {
+    let testBoard = findObjectFromPath(element, "esn", Board.esn);
+    if (typeof(testBoard) != 'undefined'){
+    if (Object.keys(testBoard.modules[ModNumber].cells[Cell]).length != 0){
+      if (testBoard.time > boardTime){
+        finalPath = element;
+        boardTime = testBoard.time;
+      }
+    }}
+  });
+  return dtfParse(finalPath);
 }
 
 

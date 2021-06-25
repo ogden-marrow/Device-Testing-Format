@@ -1,4 +1,4 @@
-import { findFromESN, JSONSaver, findLatestOfModule, findLatestOfCell} from '../supportingJs/supporting.js';
+import { findFromESN, JSONSaver, findLatestOfModule, findLatestOfCell } from '../supportingJs/supporting.js';
 import { board, module, cell, pin } from '../dtfDescription/dtfDescription.js';
 
 function QueryFromESNTime(esn: string, Time?: number, Module?: number, Cell?: number, Pin?: number,): board | module | cell | pin {
@@ -33,22 +33,44 @@ function QueryFromESNTime(esn: string, Time?: number, Module?: number, Cell?: nu
   }
 }
 
-function QueryForModule(Board: board, ModNumber: number){
+function QueryForModule(Board: board, ModNumber: number): module {
   if (Object.keys(Board.modules[ModNumber]).length == 0) {
-    return findLatestOfModule(Board,ModNumber);
+    return findLatestOfModule(Board, ModNumber).modules[ModNumber];
   } else {
     return Board.modules[ModNumber]
   }
 }
 function QueryForCell(Board: board, ModNumber: number, Cell: number): cell {
-  if (Object.keys(Board.modules[ModNumber].cells[Cell]).length == 0) {
-    return findLatestOfCell(Board, ModNumber, Cell);
-  } else {
+  let testBoard: board;
+  if (Object.keys(Board.modules[ModNumber]).length == 0) {
+    testBoard = findLatestOfModule(Board, ModNumber);
+    if (Object.keys(Board.modules[ModNumber].cells[Cell]).length == 0) {
+      return findLatestOfCell(testBoard, ModNumber, Cell).modules[ModNumber].cells[Cell];
+    }
+  } else if (Object.keys(Board.modules[ModNumber].cells[Cell]).length == 0) {
+    return findLatestOfCell(Board, ModNumber, Cell).modules[ModNumber].cells[Cell];
+  }
+  else {
     return Board.modules[ModNumber].cells[Cell]
   }
 }
 function QueryForPin(Board: board, ModNumber: number, Cell: number, Pin: number): pin {
-  return Board.modules[ModNumber].cells[Cell].pins[Pin]
+  let testBoard: board;
+  if (Object.keys(Board.modules[ModNumber]).length == 0) {
+    let testBoard = findLatestOfModule(Board, ModNumber);
+    if (Object.keys(Board.modules[ModNumber].cells[Cell]).length == 0) {
+      if () {
+        return findLatestOfCell(testBoard, ModNumber, Cell).modules[ModNumber].cells[Cell].pins[Pin];
+      }
+    }
+  } else if (Object.keys(Board.modules[ModNumber].cells[Cell]).length == 0) {
+    return findLatestOfCell(Board, ModNumber, Cell).modules[ModNumber].cells[Cell].pins[Pin];
+  } else if (Object.keys(Board.modules[ModNumber].cells[Cell].pins[Pin]).length){
+
+  }
+  else {
+    return Board.modules[ModNumber].cells[Cell].pins[Pin]
+  }
 }
 function QueryForPinData(Board: board, ModNumber: number, Cell: number, Pin: number, key: string, value: number) { }
 
