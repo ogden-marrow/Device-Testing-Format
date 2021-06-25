@@ -84,21 +84,40 @@ function findFromESN(esn: string, Time?: number): board {
   return finalBoard;
 }
 
-function findLatestOf(Board: board, ModNumber: number): board | module | cell | pin {
+function findLatestOfModule(Board: board, ModNumber: number): module{
   let dtfFlies = fis.readdirSync("./").filter(file => file.includes('.dtf'));
-  let finalBoard = emptyBoard(Board.esn, Board.time)
+  let finalPath: string;
+  let boardTime = 0;
   dtfFlies.forEach(element => {
     let testBoard = findObjectFromPath(element, "esn", Board.esn);
-    if (typeof (testBoard) != 'undefined') {
-      let testLength = Object.keys(testBoard.modules[ModNumber]).length;
-      if (testLength != 0) {
-        if (findObjectFromPath(element, "esn", Board.esn).time > finalBoard.time) {
-          finalBoard = findObjectFromPath(element, "esn", Board.esn);
-        }
+    if (typeof(testBoard) != 'undefined'){
+    if (Object.keys(testBoard.modules[ModNumber]).length != 0){
+      if (testBoard.time > boardTime){
+        finalPath = element;
+        boardTime = testBoard.time;
       }
-    }
+    }}
   });
-  return finalBoard.modules[ModNumber];
+  return dtfParse(finalPath).modules[ModNumber];
 }
 
-export { JSONSaver, emptyBoard, arraysMatch, dtfParse, findFromESN, findLatestOf, findObjectFromPath }
+function findLatestOfCell(Board: board, ModNumber: number, Cell: number): cell{
+  let dtfFlies = fis.readdirSync("./").filter(file => file.includes('.dtf'));
+  let finalPath: string;
+  let boardTime = 0;
+  dtfFlies.forEach(element => {
+    let testBoard = findObjectFromPath(element, "esn", Board.esn);
+    if (typeof(testBoard) != 'undefined'){
+    if (Object.keys(testBoard.modules[ModNumber]).length != 0){
+      if (testBoard.time > boardTime){
+        finalPath = element;
+        boardTime = testBoard.time;
+      }
+    }}
+  });
+  return dtfParse(finalPath).modules[ModNumber].cells[Cell];
+}
+
+
+
+export { JSONSaver, emptyBoard, arraysMatch, dtfParse, findFromESN, findLatestOfModule , findObjectFromPath ,findLatestOfCell}

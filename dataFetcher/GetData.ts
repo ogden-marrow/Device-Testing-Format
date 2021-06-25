@@ -1,4 +1,4 @@
-import { findFromESN, JSONSaver, findLatestOf} from '../supportingJs/supporting.js';
+import { findFromESN, JSONSaver, findLatestOfModule, findLatestOfCell} from '../supportingJs/supporting.js';
 import { board, module, cell, pin } from '../dtfDescription/dtfDescription.js';
 
 function QueryFromESNTime(esn: string, Time?: number, Module?: number, Cell?: number, Pin?: number,): board | module | cell | pin {
@@ -35,13 +35,17 @@ function QueryFromESNTime(esn: string, Time?: number, Module?: number, Cell?: nu
 
 function QueryForModule(Board: board, ModNumber: number){
   if (Object.keys(Board.modules[ModNumber]).length == 0) {
-    return findLatestOf(Board,ModNumber);
+    return findLatestOfModule(Board,ModNumber);
   } else {
     return Board.modules[ModNumber]
   }
 }
 function QueryForCell(Board: board, ModNumber: number, Cell: number): cell {
-  return Board.modules[ModNumber].cells[Cell]
+  if (Object.keys(Board.modules[ModNumber].cells[Cell]).length == 0) {
+    return findLatestOfCell(Board, ModNumber, Cell);
+  } else {
+    return Board.modules[ModNumber].cells[Cell]
+  }
 }
 function QueryForPin(Board: board, ModNumber: number, Cell: number, Pin: number): pin {
   return Board.modules[ModNumber].cells[Cell].pins[Pin]
