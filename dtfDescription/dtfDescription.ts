@@ -17,7 +17,8 @@ export interface pin {
   HightUp: number,
   HightDown: number,
   PKForce: number,
-  TipForce: number
+  TipForce: number,
+  Notes: string[],
 }
 
 export interface cell {
