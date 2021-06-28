@@ -136,4 +136,4 @@ function findLatestOfPin(Board: board, ModNumber: number, Cell: number, Pin: num
 
 
 
-export { JSONSaver, emptyBoard, arraysMatch, dtfParse, findFromESN, findLatestOfModule , findObjectFromPath ,findLatestOfCell}
+export { JSONSaver, emptyBoard, arraysMatch, dtfParse, findFromESN, findLatestOfModule , findObjectFromPath ,findLatestOfCell, findLatestOfPin}
