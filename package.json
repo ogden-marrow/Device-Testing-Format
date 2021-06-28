@@ -1,5 +1,5 @@
 {
-  "name": "testing-json-file-format",
+  "name": "device-testing-format",
   "version": "0.0.5",
   "description": "This is main .dtf file type processor.",
   "main": "BackLinker.js",
