@@ -2,7 +2,6 @@
 This is code that outlines how this data will be structured.
 The extension for the file is dtf(Device Testing Format)
 If data is not supplied to an object that will be set as a back link to the pervious version of the file.
-All keys in the initial file have to have values.
 */
 
 export interface pin {
@@ -19,6 +18,7 @@ export interface pin {
   PKForce: number,
   TipForce: number,
   Notes: string[],
+  Failures: string[]
 }
 
 export interface cell {
