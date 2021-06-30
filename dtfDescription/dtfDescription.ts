@@ -12,7 +12,7 @@ export interface pin {
   CycleCount: number,
   UpTiming: number,
   DownTiming: number,
-  halfCycles: number,
+  haltCycles: number,
   HightUp: number,
   HightDown: number,
   PKForce: number,
@@ -36,7 +36,7 @@ export interface board {
   modules: module[],
 }
 
-function Pin(StartTime?: number, StopTime?: number, RunTime?: number, CycleRate?: number, CycleCount?: number, UpTiming?: number, DownTiming?: number, haltC?: number) {
+function Pin(StartTime?: number, StopTime?: number, RunTime?: number, CycleRate?: number, CycleCount?: number, UpTiming?: number, DownTiming?: number, haltC?: number, HightUp?: number, HightDown?: number, PKForce?: number, TipForce?: number, Notes?: string[], Failures?: string[]) {
   this.StartTime = StartTime;
   this.StopTime = StopTime;
   this.RunTime = RunTime;
@@ -45,15 +45,21 @@ function Pin(StartTime?: number, StopTime?: number, RunTime?: number, CycleRate?
   this.UpTiming = UpTiming;
   this.DownTiming = DownTiming;
   this.haltC = haltC;
+  this.HightUp = HightUp;
+  this.HightDown = HightDown;
+  this.PKForce = PKForce;
+  this.TipForce = TipForce;
+  this.Notes = Notes;
+  this.Failures = Failures;
 }
 function Cell(pins?: pin[]) {
   this.pins = pins;
 }
-function Module(sn?: string,cells?: cell[]) {
+function Module(sn?: string, cells?: cell[]) {
   this.sn = sn;
   this.cells = cells;
 }
-function Board(esn: string, time: number, modules?: module[]){
+function Board(esn: string, time: number, modules?: module[]) {
   this.esn = esn;
   this.time = time;
   this.modules = modules;
@@ -78,4 +84,4 @@ function Changes(esn: string, mod: number, cell: number, pin: number, keys?: str
   this.values = values;
 }
 
-export{Pin, Cell, Module, Board,Changes};
+export { Pin, Cell, Module, Board, Changes };
