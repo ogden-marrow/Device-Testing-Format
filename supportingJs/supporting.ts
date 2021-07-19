@@ -58,7 +58,7 @@ function findObjectFromPath(path: string, key: string, value: any): board | unde
   }
 }
 
-function findFromESN(esn: string, Time?: number): board {
+function findFromESN(esn: string, Time?: number): board | undefined {
   let finalBoard = emptyBoard(esn, 0);
   let dtfFlies = fis.readdirSync("./").filter(file => file.includes('.dtf'));
   if (typeof Time == 'undefined') {
