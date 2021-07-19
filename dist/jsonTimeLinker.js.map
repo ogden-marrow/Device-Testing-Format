@@ -1,0 +1,1 @@
+{"version":3,"file":"jsonTimeLinker.js","sourceRoot":"","sources":["../src/jsonTimeLinker.ts"],"names":[],"mappings":";AAAA,wBAAwB;AACxB,sEAAsE;;;;;;;;;;;;;;;;;;;;;AAEtE,uCAAyB;AAGzB,6BAA6B;AAC7B,IAAI,OAAO,GAAG,IAAI,CAAC,KAAK,CAAC,EAAE,CAAC,YAAY,CAAC,cAAc,EAAC,OAAO,CAAC,CAAC,CAAC;AAClE,IAAI,MAAM,GAAG,IAAI,CAAC,KAAK,CAAC,EAAE,CAAC,YAAY,CAAC,eAAe,EAAE,OAAO,CAAC,CAAC,CAAC"}

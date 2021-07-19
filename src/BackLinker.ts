@@ -1,6 +1,6 @@
-import { board } from './dtfDescription/dtfDescription.js'
-import * as DF from './difference/difference.js';
-import { emptyBoard } from './supportingJs/supporting.js';
+import { board } from './dtfDescription'
+import * as DF from './difference';
+import { emptyBoard } from './supporting';
 
 
 function UpdateObject(initial: board, data: board): board {

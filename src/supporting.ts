@@ -1,5 +1,5 @@
 import * as fis from 'fs';
-import { Board, Cell, Module, Pin, board, cell, pin, module } from '../dtfDescription/dtfDescription.js';
+import { Board, Cell, Module, Pin, board, cell, pin, module } from './dtfDescription';
 import * as path from 'path';
 
 function JSONSaver(FileName: string, json2Parse: any, extension: string) {

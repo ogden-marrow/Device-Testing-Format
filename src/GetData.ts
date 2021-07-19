@@ -1,5 +1,5 @@
-import { findFromESN, JSONSaver, findLatestOfModule, findLatestOfCell, findLatestOfPin } from '../supportingJs/supporting.js';
-import { board, module, cell, pin } from '../dtfDescription/dtfDescription.js';
+import { findFromESN, JSONSaver, findLatestOfModule, findLatestOfCell, findLatestOfPin } from './supporting';
+import { board, module, cell, pin } from './dtfDescription';
 
 function QueryFromESNTime(esn: string, Time?: number, Module?: number, Cell?: number, Pin?: number,): board | module | cell | pin {
   if ((typeof (Module) == 'undefined') && ((typeof (Cell) != 'undefined') || (typeof (Pin) != 'undefined'))) {
