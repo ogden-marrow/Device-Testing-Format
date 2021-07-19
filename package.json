@@ -1,6 +1,6 @@
 {
   "name": "device-testing-format",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "This is main .dtf file type processor.",
   "main": "Main.js",
   "type": "commonjs",

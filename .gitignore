@@ -7,8 +7,8 @@ node_modules
 
 #Becasue this is a typescript project I will not inclued the copiled js files.
 
-*.js
-*.d.ts
+
+
 erro.txt
 
 #test files for me
