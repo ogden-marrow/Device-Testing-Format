@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "esnext",
+        "target": "ES5",
         "watch": true,
         "allowJs": true,
         // Generate d.ts files
