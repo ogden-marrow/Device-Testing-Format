@@ -1,8 +1,8 @@
 {
   "name": "device-testing-format",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "This is main .dtf file type processor.",
-  "main": "BackLinker.js",
+  "main": "Main.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

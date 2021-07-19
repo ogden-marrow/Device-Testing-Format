@@ -1,7 +1,6 @@
-import * as FS from 'fs';
 import { board } from './dtfDescription/dtfDescription.js'
 import * as DF from './difference/difference.js';
-import { emptyBoard, } from './supportingJs/supporting.js';
+import { emptyBoard } from './supportingJs/supporting.js';
 
 function UpdateObject(initial: board, data: board): board {
   let diff = DF.DifferenceFinder(initial, data);
