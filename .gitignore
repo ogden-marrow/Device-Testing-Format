@@ -6,8 +6,7 @@
 node_modules
 
 #Becasue this is a typescript project I will not inclued the copiled js files.
-
-./notGood
+notGood
 
 *.js
 *.d.ts
