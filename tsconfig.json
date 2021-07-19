@@ -6,5 +6,12 @@
     "allowJs": true,
     // Generate d.ts files
     "declaration": true,
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
   }
-}
