@@ -1,13 +1,13 @@
-import {arraysMatch} from './supporting';
-import {DF,Changes,board} from './dtfDescription';
+import { arraysMatch } from './supporting';
+import { DF, Changes, board, pin } from './dtfDescription';
 
-function DifferenceFinder (Board:board, BoardUpdate:board):DF[] {
-  let OldObject;
-  let NewObject;
-  let OldKey;
-  let OldValue;
-  let NewKey;
-  let NewValue;
+function DifferenceFinder(Board: board, BoardUpdate: board): DF[] {
+  let OldObject: pin;
+  let NewObject: pin;
+  let OldKey: string;
+  let OldValue: (string | number);
+  let NewKey: string;
+  let NewValue: number;
   let change: DF;
   let ChangesArray: DF[] = [];
   if (Board.esn == BoardUpdate.esn && Board.time != BoardUpdate.time) {
@@ -36,9 +36,9 @@ function DifferenceFinder (Board:board, BoardUpdate:board):DF[] {
       }
     }
   } else {
-    console.log('Not the same Hardware or are from the same time');
+    throw('Not the same Hardware or are from the same time');
   }
   return ChangesArray;
 }
 
-export{DifferenceFinder}
+export { DifferenceFinder }
