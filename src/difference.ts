@@ -5,9 +5,9 @@ function DifferenceFinder(Board: board, BoardUpdate: board): DF[] {
   let OldObject: pin;
   let NewObject: pin;
   let OldKey: string;
-  let OldValue: (string | number);
+  let OldValue: string | number;
   let NewKey: string;
-  let NewValue: number;
+  let NewValue;
   let change: DF;
   let ChangesArray: DF[] = [];
   if (Board.esn == BoardUpdate.esn && Board.time != BoardUpdate.time) {
