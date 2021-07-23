@@ -141,6 +141,8 @@ function findLatestOfPin(Board: board, ModNumber: number, Cell: number, Pin: num
 
 function ChangePinData(Data: pin, CurrentBoard: board, address: Number[]) {
   let newBoard = emptyBoard(CurrentBoard.esn,CurrentBoard.time);
+  
+  return newBoard;
 }
 
 
