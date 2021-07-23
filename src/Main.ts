@@ -1,10 +1,13 @@
-import { board } from './dtfDescription'
+import { Board,Module,Cell,Pin } from './dtfDescription'
 import * as DF from './difference';
 import { JSONSaver, emptyBoard, arraysMatch, dtfParse, findFromESN, findLatestOfModule, findObjectFromPath, findLatestOfCell, findLatestOfPin } from './supporting';
 import * as dtfDescription from './dtfDescription'
 
 export {
-  board,
+  Board,
+  Module,
+  Cell,
+  Pin,
   DF,
   JSONSaver,
   emptyBoard,

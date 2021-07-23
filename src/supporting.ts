@@ -36,6 +36,8 @@ function emptyPins(): pin[] {
   return pins
 }
 
+
+
 function arraysMatch(arr1: any[], arr2: any[]): boolean {
   // Check if the arrays are the same length
   if (arr1.length !== arr2.length) return false;
@@ -137,6 +139,9 @@ function findLatestOfPin(Board: board, ModNumber: number, Cell: number, Pin: num
   return dtfParse(finalPath);
 }
 
+function ChangePinData(Data:pin,CurrentBoard:board) {
+  
+}
 
 
-export { JSONSaver, emptyBoard, arraysMatch, dtfParse, findFromESN, findLatestOfModule, findObjectFromPath, findLatestOfCell, findLatestOfPin }
+export { JSONSaver, emptyBoard, arraysMatch, dtfParse, findFromESN, findLatestOfModule, findObjectFromPath, findLatestOfCell, findLatestOfPin, ChangePinData}
