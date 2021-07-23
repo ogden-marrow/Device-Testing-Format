@@ -12,6 +12,8 @@ notGood
 *.d.ts
 erro.txt
 
+dist/
+
 #test files for me
 ./dataFetcher/testing*
 dataFetcher/testing.ts
