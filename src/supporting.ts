@@ -1,5 +1,5 @@
+import { time } from 'console';
 import * as fs from 'fs';
-import _ from "lodash";
 import { Board, Cell, Module, Pin, board, cell, pin, module } from './dtfDescription';
 
 export interface address {
@@ -8,13 +8,31 @@ export interface address {
   module: number;
 }
 
-function address(pinN: number, cellN: number, moduleN: number): address {
+function address(moduleN: number, cellN?: number, pinN?: number): address {
   let obj = {
     pin: pinN,
     cell: cellN,
     module: moduleN
   };
   return obj;
+}
+
+export interface updateData {
+  StartTime: number,
+  StopTime: number,
+  RunTime: number,
+  CycleRate: number,
+  CycleCount: number,
+  UpTiming: number,
+  DownTiming: number,
+  haltCycles: number,
+  HightUp: number,
+  HightDown: number,
+  PKForce: number,
+  TipForce: number,
+  Notes: string[],
+  Failures: string[],
+  MSN: string,
 }
 
 function JSONSaver(FileName: string, json2Parse: any, extension: string) {
@@ -29,9 +47,9 @@ function emptyBoard(esn: string, time: number): board {
 
 function emptyModules(cells: cell[], SN?: string[]): module[] {
   let modules = new Array(5);
-    for (let i = 0; i < 5; i++) {
-      modules[i] = new Module(null, cells);
-    }
+  for (let i = 0; i < 5; i++) {
+    modules[i] = new Module(null, cells);
+  }
 
   return modules
 }
@@ -46,10 +64,9 @@ function emptyCells(pins: pin[]): cell[] {
 
 function emptyPins(): pin[] {
   let pins = new Array(8);
-    for (let i = 0; i < 8; i++) {
-      pins[i] = new Pin();
-    }
-
+  for (let i = 0; i < 8; i++) {
+    pins[i] = new Pin();
+  }
   return pins
 }
 
@@ -156,13 +173,42 @@ function findLatestOfPin(Board: board, ModNumber: number, Cell: number, Pin: num
   return dtfParse(finalPath);
 }
 
-function ChangePinData(CurrentBoard: board, address: address) {
-  const test = _.clone(CurrentBoard);
-  const updatedObj = {...test.modules[0].cells[0].pins[0], RunTime: 44};
-  test.modules[0].cells[0].pins[0] = updatedObj
-  // _.update(test,"modules[0].cells[0].pins[0].RunTime",function(value) {return 35;});
-  return test;
+function ChangeData(CurrentBoard: board, address: address, updateData: updateData) {
+  if (!(address.cell == undefined) && !(address.pin == undefined)) {
+    PinChange(CurrentBoard,address,updateData)
+  } else if (!(address.module == undefined)) {
+    console.log(`something else`);
+
+  } else {
+    console.log(`there must be a a module number`);
+  }
+  return;
 }
 
+function PinChange(CurrentBoard: board, address: address, newData: updateData) {
+  let pins = new Array(8);
+  for (let i = 0; i < 8; i++) {
+    if (i == address.pin) { pins[i] = new Pin(); }
+    else {
+      pins[i] = new Pin(
+        newData.StartTime,
+        newData.StopTime,
+        newData.RunTime,
+        newData.CycleCount,
+        newData.CycleCount,
+        newData.UpTiming,
+        newData.DownTiming,
+        newData.haltCycles,
+        newData.HightUp,
+        newData.HightDown,
+        newData.PKForce,
+        newData.TipForce,
+        newData.Notes,
+        newData.Failures
+      );
+    }
+  }
+  return new Board(CurrentBoard.esn, CurrentBoard.time, emptyModules(emptyCells(pins)));
+}
 
-export { JSONSaver, emptyBoard, arraysMatch, dtfParse, findFromESN, findLatestOfModule, findObjectFromPath, findLatestOfCell, findLatestOfPin, ChangePinData }
+export { JSONSaver, emptyBoard, arraysMatch, dtfParse, findFromESN, findLatestOfModule, findObjectFromPath, findLatestOfCell, findLatestOfPin, ChangeData }
