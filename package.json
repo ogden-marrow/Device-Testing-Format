@@ -1,6 +1,6 @@
 {
-  "name": "device-testing-format-up",
-  "version": "0.1.2",
+  "name": "device-testing-format",
+  "version": "0.1.3",
   "description": "This is main .dtf file type processor.",
   "main": "dist/Main.js",
   "type": "commonjs",
@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/ogden-marrow/Testing-JSON-File-Format#readme",
   "dependencies": {
+    "@types/lodash": "^4.14.171",
+    "lodash": "^4.17.21",
     "typescript": "^4.3.4"
   },
   "devDependencies": {

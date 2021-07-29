@@ -1,6 +1,21 @@
 import * as fs from 'fs';
+import _ from "lodash";
 import { Board, Cell, Module, Pin, board, cell, pin, module } from './dtfDescription';
-import * as path from 'path';
+
+export interface address {
+  pin: number;
+  cell: number;
+  module: number;
+}
+
+function address(pinN: number, cellN: number, moduleN: number): address {
+  let obj = {
+    pin: pinN,
+    cell: cellN,
+    module: moduleN
+  };
+  return obj;
+}
 
 function JSONSaver(FileName: string, json2Parse: any, extension: string) {
   let json = JSON.stringify(json2Parse);
@@ -12,11 +27,12 @@ function emptyBoard(esn: string, time: number): board {
   return board
 }
 
-function emptyModules(cells: cell[]): module[] {
+function emptyModules(cells: cell[], SN?: string[]): module[] {
   let modules = new Array(5);
-  for (let i = 0; i < 5; i++) {
-    modules[i] = new Module(null, cells);
-  }
+    for (let i = 0; i < 5; i++) {
+      modules[i] = new Module(null, cells);
+    }
+
   return modules
 }
 
@@ -30,9 +46,10 @@ function emptyCells(pins: pin[]): cell[] {
 
 function emptyPins(): pin[] {
   let pins = new Array(8);
-  for (let i = 0; i < 8; i++) {
-    pins[i] = new Pin();
-  }
+    for (let i = 0; i < 8; i++) {
+      pins[i] = new Pin();
+    }
+
   return pins
 }
 
@@ -139,10 +156,12 @@ function findLatestOfPin(Board: board, ModNumber: number, Cell: number, Pin: num
   return dtfParse(finalPath);
 }
 
-function ChangePinData(Data: pin, CurrentBoard: board, address: Number[]) {
-  let newBoard = emptyBoard(CurrentBoard.esn,CurrentBoard.time);
-  
-  return newBoard;
+function ChangePinData(CurrentBoard: board, address: address) {
+  const test = _.clone(CurrentBoard);
+  const updatedObj = {...test.modules[0].cells[0].pins[0], RunTime: 44};
+  test.modules[0].cells[0].pins[0] = updatedObj
+  // _.update(test,"modules[0].cells[0].pins[0].RunTime",function(value) {return 35;});
+  return test;
 }
 
 
