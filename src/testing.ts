@@ -4,9 +4,9 @@ import { emptyBoard, ChangeData } from "./Main";
 import { findFromESN, findObjectFromPath , address} from './supporting'
 
 let add = {
-  pin: 0,
-  cell: 0,
-  module: 0,
+  pin: [0],
+  cell: [0],
+  module: [0],
 }
 
 let dataFrame = {

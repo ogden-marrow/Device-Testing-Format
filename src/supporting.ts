@@ -3,12 +3,12 @@ import * as fs from 'fs';
 import { Board, Cell, Module, Pin, board, cell, pin, module } from './dtfDescription';
 
 export interface address {
-  pin: number;
-  cell: number;
-  module: number;
+  pin: number[];
+  cell: number[];
+  module: number[];
 }
 
-function address(moduleN: number, cellN?: number, pinN?: number): address {
+function address(moduleN: number[], cellN?: number[], pinN?: number[]): address {
   let obj = {
     pin: pinN,
     cell: cellN,
@@ -40,9 +40,14 @@ function JSONSaver(FileName: string, json2Parse: any, extension: string) {
   fs.writeFile(FileName + extension, json, function (err) { if (err) throw err; });
 }
 
-function emptyBoard(esn: string, time: number): board {
-  let board = new Board(esn, time, emptyModules(emptyCells(emptyPins())));
-  return board
+function emptyBoard(esn: string, time: number, MSN?: string[]): board {
+  if (MSN) {
+    let board = new Board(esn, time, emptyModules(emptyCells(emptyPins()), MSN));
+    return board
+  } else {
+    let board = new Board(esn, time, emptyModules(emptyCells(emptyPins())));
+    return board
+  }
 }
 
 function emptyModules(cells: cell[], SN?: string[]): module[] {
@@ -50,16 +55,37 @@ function emptyModules(cells: cell[], SN?: string[]): module[] {
   for (let i = 0; i < 5; i++) {
     modules[i] = new Module(null, cells);
   }
-
   return modules
 }
 
+function FillModules(cells: cell[], cellsF: cell[], address: address, SN?: string[]): module[] {
+  let modules = new Array(5);
+  for (let i = 0; i < 5; i++) {
+    if (address.module.includes(i)) {
+      modules[i] = new Module(null, cellsF)
+    } else {
+      modules[i] = new Module(null, cells);
+    }
+  }
+  return modules
+}
 function emptyCells(pins: pin[]): cell[] {
   let cells = new Array(4);
   for (let i = 0; i < 4; i++) {
     cells[i] = new Cell(pins)
   }
   return cells
+}
+function FillCells(pinsE: pin[], pinsF: pin[], address: address): cell[] {
+  let cellsF = new Array(4);
+  for (let i = 0; i < 4; i++) {
+    if (address.cell.includes(i)) {
+      cellsF[i] = new Cell(pinsF);
+    } else {
+      cellsF[i] = new Cell(pinsE);
+    }
+  }
+  return cellsF;
 }
 
 function emptyPins(): pin[] {
@@ -175,7 +201,7 @@ function findLatestOfPin(Board: board, ModNumber: number, Cell: number, Pin: num
 
 function ChangeData(CurrentBoard: board, address: address, updateData: updateData) {
   if (!(address.cell == undefined) && !(address.pin == undefined)) {
-    PinChange(CurrentBoard,address,updateData)
+    PinChange(CurrentBoard, address, updateData)
   } else if (!(address.module == undefined)) {
     console.log(`something else`);
 
@@ -186,11 +212,11 @@ function ChangeData(CurrentBoard: board, address: address, updateData: updateDat
 }
 
 function PinChange(CurrentBoard: board, address: address, newData: updateData) {
-  let pins = new Array(8);
+  let pinsFill = new Array(8);
   for (let i = 0; i < 8; i++) {
-    if (i == address.pin) { pins[i] = new Pin(); }
+    if (address.pin.includes(i)) { pinsFill[i] = new Pin(); }
     else {
-      pins[i] = new Pin(
+      pinsFill[i] = new Pin(
         newData.StartTime,
         newData.StopTime,
         newData.RunTime,
@@ -208,7 +234,18 @@ function PinChange(CurrentBoard: board, address: address, newData: updateData) {
       );
     }
   }
-  return new Board(CurrentBoard.esn, CurrentBoard.time, emptyModules(emptyCells(pins)));
+  return new Board(CurrentBoard.esn, CurrentBoard.time, emptyModules(emptyCells(pinsFill)));
 }
 
-export { JSONSaver, emptyBoard, arraysMatch, dtfParse, findFromESN, findLatestOfModule, findObjectFromPath, findLatestOfCell, findLatestOfPin, ChangeData }
+export {
+  JSONSaver,
+  emptyBoard,
+  arraysMatch,
+  dtfParse,
+  findFromESN,
+  findLatestOfModule,
+  findObjectFromPath,
+  findLatestOfCell,
+  findLatestOfPin,
+  ChangeData
+}
