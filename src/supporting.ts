@@ -204,7 +204,10 @@ function ChangeData(CurrentBoard: board, address: address, updateData: updateDat
   if (!(address.cell == undefined) && !(address.pin == undefined)) {
     let B = PinChange(CurrentBoard, address, updateData);
     return B;
-  } else if (!(address.module == undefined)) {
+  } else if(address.module){
+    console.log("err");
+    
+  }else if (!(address.module == undefined)) {
     console.log(`something else`);
   } else {
     console.log(`there must be a a module number`);
