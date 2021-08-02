@@ -7,16 +7,6 @@ export interface address {
   cell: number[];
   module: number[];
 }
-
-function address(moduleN: number[], cellN?: number[], pinN?: number[]): address {
-  let obj = {
-    pin: pinN,
-    cell: cellN,
-    module: moduleN
-  };
-  return obj;
-}
-
 export interface updateData {
   StartTime: number,
   StopTime: number,
@@ -32,8 +22,19 @@ export interface updateData {
   TipForce: number,
   Notes: string[],
   Failures: string[],
-  MSN: string,
+  MSN: string
 }
+
+function address(moduleN: number[], cellN?: number[], pinN?: number[]): address {
+  let obj = {
+    pin: pinN,
+    cell: cellN,
+    module: moduleN
+  };
+  return obj;
+}
+
+
 
 function JSONSaver(FileName: string, json2Parse: any, extension: string) {
   let json = JSON.stringify(json2Parse);
@@ -58,13 +59,13 @@ function emptyModules(cells: cell[], SN?: string[]): module[] {
   return modules
 }
 
-function FillModules(cells: cell[], cellsF: cell[], address: address, SN?: string[]): module[] {
+function FillModules(cellsF: cell[], address: address, SN?: string[]): module[] {
   let modules = new Array(5);
   for (let i = 0; i < 5; i++) {
     if (address.module.includes(i)) {
       modules[i] = new Module(null, cellsF)
     } else {
-      modules[i] = new Module(null, cells);
+      modules[i] = new Module(null, emptyCells(emptyPins()));
     }
   }
   return modules
@@ -76,13 +77,13 @@ function emptyCells(pins: pin[]): cell[] {
   }
   return cells
 }
-function FillCells(pinsE: pin[], pinsF: pin[], address: address): cell[] {
+function FillCells(pinsF: pin[], address: address): cell[] {
   let cellsF = new Array(4);
   for (let i = 0; i < 4; i++) {
     if (address.cell.includes(i)) {
       cellsF[i] = new Cell(pinsF);
     } else {
-      cellsF[i] = new Cell(pinsE);
+      cellsF[i] = new Cell(emptyPins());
     }
   }
   return cellsF;
@@ -201,21 +202,19 @@ function findLatestOfPin(Board: board, ModNumber: number, Cell: number, Pin: num
 
 function ChangeData(CurrentBoard: board, address: address, updateData: updateData) {
   if (!(address.cell == undefined) && !(address.pin == undefined)) {
-    PinChange(CurrentBoard, address, updateData)
+    let B = PinChange(CurrentBoard, address, updateData);
+    return B;
   } else if (!(address.module == undefined)) {
     console.log(`something else`);
-
   } else {
     console.log(`there must be a a module number`);
   }
-  return;
 }
 
-function PinChange(CurrentBoard: board, address: address, newData: updateData) {
+function PinChange(CurrentBoard: board, address: address, newData: updateData): board {
   let pinsFill = new Array(8);
   for (let i = 0; i < 8; i++) {
-    if (address.pin.includes(i)) { pinsFill[i] = new Pin(); }
-    else {
+    if (address.pin.includes(i)) {
       pinsFill[i] = new Pin(
         newData.StartTime,
         newData.StopTime,
@@ -233,8 +232,11 @@ function PinChange(CurrentBoard: board, address: address, newData: updateData) {
         newData.Failures
       );
     }
+    else {
+      pinsFill[i] = new Pin();
+    }
   }
-  return new Board(CurrentBoard.esn, CurrentBoard.time, emptyModules(emptyCells(pinsFill)));
+  return new Board(CurrentBoard.esn, CurrentBoard.time, FillModules(FillCells(pinsFill, address), address));
 }
 
 export {

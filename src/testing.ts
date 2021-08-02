@@ -1,7 +1,7 @@
 import { QueryFromESNTime } from './GetData';
 import { Board } from './dtfDescription';
 import { emptyBoard, ChangeData } from "./Main";
-import { findFromESN, findObjectFromPath , address} from './supporting'
+import { findFromESN, findObjectFromPath, address, JSONSaver } from './supporting'
 
 let add = {
   pin: [0],
@@ -10,7 +10,7 @@ let add = {
 }
 
 let dataFrame = {
-  StartTime: 24,
+  StartTime: undefined,
   StopTime: 42,
   RunTime: 52,
   CycleRate: 35,
@@ -20,13 +20,15 @@ let dataFrame = {
   haltCycles: 567,
   HightUp: 347,
   HightDown: 23,
-  PKForce:85 ,
+  PKForce: 85,
   TipForce: 28,
   Notes: ["test Note"],
-  Failures:["Something Bad"] ,
+  Failures: ["Something Bad"],
   MSN: "255634"
 }
 
-let test = ChangeData(emptyBoard("nth45th",6969),add,dataFrame);
+let test = ChangeData(emptyBoard("nth45th", 6969), add, dataFrame);
 
-// console.log(test.modules[0].cells[1].pins[0]);
+JSONSaver("notsyn",test,"dtf");
+
+console.log(test.modules[0].cells[0].pins[0]);
