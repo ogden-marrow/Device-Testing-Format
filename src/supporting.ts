@@ -200,21 +200,20 @@ function findLatestOfPin(Board: board, ModNumber: number, Cell: number, Pin: num
   return dtfParse(finalPath);
 }
 
-function ChangeData(CurrentBoard: board, address: address, updateData: updateData) {
+function ChangeData(esn: string, time: number, address: address, updateData: updateData) {
   if (!(address.cell == undefined) && !(address.pin == undefined)) {
-    let B = PinChange(CurrentBoard, address, updateData);
+    let B = PinChange(esn, time, address, updateData);
     return B;
-  } else if(address.module){
+  } else if (address.module) {
     console.log("err");
-    
-  }else if (!(address.module == undefined)) {
+  } else if (!(address.module == undefined)) {
     console.log(`something else`);
   } else {
     console.log(`there must be a a module number`);
   }
 }
 
-function PinChange(CurrentBoard: board, address: address, newData: updateData): board {
+function PinChange(esn: string, time: number, address: address, newData: updateData): board {
   let pinsFill = new Array(8);
   for (let i = 0; i < 8; i++) {
     if (address.pin.includes(i)) {
@@ -239,7 +238,7 @@ function PinChange(CurrentBoard: board, address: address, newData: updateData): 
       pinsFill[i] = new Pin();
     }
   }
-  return new Board(CurrentBoard.esn, CurrentBoard.time, FillModules(FillCells(pinsFill, address), address));
+  return new Board(esn, time, FillModules(FillCells(pinsFill, address), address));
 }
 
 export {
@@ -252,5 +251,5 @@ export {
   findObjectFromPath,
   findLatestOfCell,
   findLatestOfPin,
-  ChangeData
+  ChangeData,
 }

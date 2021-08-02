@@ -27,7 +27,7 @@ let dataFrame = {
   MSN: "255634"
 }
 
-let test = ChangeData(emptyBoard("nth45th", 6969), add, dataFrame);
+let test = ChangeData("tnhoae",1234, add, dataFrame);
 
 JSONSaver("notsyn",test,"dtf");
 
