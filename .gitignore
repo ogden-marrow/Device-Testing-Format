@@ -3,12 +3,11 @@
 
 .vscode
 
-node_modules
+node_modules/
 
 #Becasue this is a typescript project I will not inclued the copiled js files.
 notGood
 
-notsyn.*
 
 *.js
 *.d.ts
@@ -19,3 +18,4 @@ dist/
 #test files for me
 ./dataFetcher/testing*
 dataFetcher/testing.ts
+notsyndtf

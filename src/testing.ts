@@ -14,7 +14,7 @@ let dataFrame = {
   StopTime: 42,
   RunTime: 52,
   CycleRate: 35,
-  CycleCount: 245,
+  CycleCount: 44,
   UpTiming: 345,
   DownTiming: 346,
   haltCycles: 567,
@@ -26,6 +26,9 @@ let dataFrame = {
   Failures: ["Something Bad"],
   MSN: "255634"
 }
+
+// console.log(fillData(dataFrame));
+
 
 let test = ChangeData("tnhoae",1234, add, fillData(dataFrame));
 

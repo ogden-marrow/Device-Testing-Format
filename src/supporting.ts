@@ -53,10 +53,10 @@ function fillData(data): updateData {
     MSN: undefined
   };
   for (let i = 0; i < Object.keys(upData).length; i++) {
-    const newKey = Object.keys(upData)[i];
+    let newKey = Object.keys(upData)[i];
     for (let j = 0; j < Object.keys(data).length; j++) {
-      const key = Object.keys(data)[j];
-      if (newKey == key) {
+      let key = Object.keys(data)[j];
+      if (newKey === key) {
         upData[newKey] = Object.values(data)[j];
       }
     }
@@ -250,7 +250,7 @@ function PinChange(esn: string, time: number, address: address, newData: updateD
         newData.StartTime,
         newData.StopTime,
         newData.RunTime,
-        newData.CycleCount,
+        newData.CycleRate,
         newData.CycleCount,
         newData.UpTiming,
         newData.DownTiming,
