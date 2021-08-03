@@ -34,6 +34,35 @@ function address(moduleN: number[], cellN?: number[], pinN?: number[]): address 
   return obj;
 }
 
+function fillData(data): updateData {
+  let upData = {
+    StartTime: undefined,
+    StopTime: undefined,
+    RunTime: undefined,
+    CycleRate: undefined,
+    CycleCount: undefined,
+    UpTiming: undefined,
+    DownTiming: undefined,
+    haltCycles: undefined,
+    HightUp: undefined,
+    HightDown: undefined,
+    PKForce: undefined,
+    TipForce: undefined,
+    Notes: undefined,
+    Failures: undefined,
+    MSN: undefined
+  };
+  for (let i = 0; i < Object.keys(upData).length; i++) {
+    const newKey = Object.keys(upData)[i];
+    for (let j = 0; j < Object.keys(data).length; j++) {
+      const key = Object.keys(data)[j];
+      if (newKey == key) {
+        upData[newKey] = Object.values(data)[j];
+      }
+    }
+  }
+  return upData;
+}
 
 
 function JSONSaver(FileName: string, json2Parse: any, extension: string) {
@@ -252,4 +281,5 @@ export {
   findLatestOfCell,
   findLatestOfPin,
   ChangeData,
+  fillData
 }

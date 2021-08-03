@@ -1,7 +1,7 @@
 import { QueryFromESNTime } from './GetData';
 import { Board } from './dtfDescription';
 import { emptyBoard, ChangeData } from "./Main";
-import { findFromESN, findObjectFromPath, address, JSONSaver } from './supporting'
+import { findFromESN, findObjectFromPath, address, JSONSaver,fillData } from './supporting'
 
 let add = {
   pin: [0],
@@ -10,7 +10,7 @@ let add = {
 }
 
 let dataFrame = {
-  StartTime: undefined,
+  StartTime: 56,
   StopTime: 42,
   RunTime: 52,
   CycleRate: 35,
@@ -27,7 +27,7 @@ let dataFrame = {
   MSN: "255634"
 }
 
-let test = ChangeData("tnhoae",1234, add, dataFrame);
+let test = ChangeData("tnhoae",1234, add, fillData(dataFrame));
 
 JSONSaver("notsyn",test,"dtf");
 
