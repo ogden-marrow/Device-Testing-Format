@@ -150,9 +150,9 @@ function findObjectFromPath(path: string, key: string, value: any): board | unde
   }
 }
 
-function findFromESN(esn: string, Time?: number): board | undefined {
+function findFromESN(esn: string,Path: string, Time?: number): board | undefined {
   let finalBoard = emptyBoard(esn, 0);
-  let dtfFlies = fs.readdirSync("./").filter(file => file.includes('.dtf'));
+  let dtfFlies = fs.readdirSync(Path).filter(file => file.includes('.dtf'));
   if (typeof Time == 'undefined') {
     dtfFlies.forEach(element => {
       let testBoard = findObjectFromPath(element, "esn", esn);
