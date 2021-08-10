@@ -150,7 +150,7 @@ function findObjectFromPath(path: string, key: string, value: any): board | unde
   }
 }
 
-function findFromESN(esn: string,Path: string, Time?: number): board | undefined {
+function findFromESN(esn: string, Path: string, Time?: number): board | undefined {
   let finalBoard = emptyBoard(esn, 0);
   let dtfFlies = fs.readdirSync(Path).filter(file => file.includes('.dtf'));
   if (typeof Time == 'undefined') {
@@ -232,14 +232,20 @@ function findLatestOfPin(Board: board, ModNumber: number, Cell: number, Pin: num
 function ChangeData(esn: string, time: number, address: address, updateData: updateData) {
   if (!(address.cell == undefined) && !(address.pin == undefined)) {
     let B = PinChange(esn, time, address, updateData);
+    (updateData.MSN != undefined) ? B.modules[address.module[0]].sn = updateData.MSN : null;
     return B;
   } else if (address.module) {
     console.log("err");
   } else if (!(address.module == undefined)) {
-    console.log(`something else`);
+
   } else {
     console.log(`there must be a a module number`);
   }
+}
+
+
+function moduleSNChange(esn: string, time: number, address: address, newData: updateData) {
+
 }
 
 function PinChange(esn: string, time: number, address: address, newData: updateData): board {

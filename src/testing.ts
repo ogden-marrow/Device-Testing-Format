@@ -34,4 +34,7 @@ let test = ChangeData("tnhoae",1234, add, fillData(dataFrame));
 
 JSONSaver("notsyn",test,"dtf");
 
+console.log(test.modules[1]);
+
+
 console.log(test.modules[0].cells[0].pins[0]);
