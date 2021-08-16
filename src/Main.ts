@@ -1,6 +1,6 @@
 import { Board,Module,Cell,Pin } from './dtfDescription'
 import * as DF from './difference';
-import { JSONSaver, emptyBoard, arraysMatch, dtfParse, findFromESN, findLatestOfModule, findObjectFromPath, findLatestOfCell, findLatestOfPin, ChangeData,fillData} from './supporting';
+import {findModuleSN, JSONSaver, emptyBoard, arraysMatch, dtfParse, findFromESN, findLatestOfModule, findObjectFromPath, findLatestOfCell, findLatestOfPin, ChangeData,fillData} from './supporting';
 import * as dtfDescription from './dtfDescription'
 
 export {
@@ -20,5 +20,6 @@ export {
   findLatestOfPin,
   dtfDescription,
   ChangeData,
-  fillData
+  fillData,
+  findModuleSN
 }
