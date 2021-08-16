@@ -1,12 +1,12 @@
 import { QueryFromESNTime } from './GetData';
 import { Board } from './dtfDescription';
 import { emptyBoard, ChangeData } from "./Main";
-import { findFromESN, findObjectFromPath, address, JSONSaver,fillData } from './supporting'
+import { findFromESN, findObjectFromPath, address, JSONSaver,fillData,findModuleSN } from './supporting'
 
 let add = {
   pin: [0],
   cell: [0],
-  module: [0],
+  module: [3],
 }
 
 let dataFrame = {
@@ -24,7 +24,7 @@ let dataFrame = {
   // TipForce: 28,
   // Notes: ["test Note"],
   // Failures: ["Something Bad"],
-  MSN: "255634"
+  MSN: "25533242343434"
 }
 
 // console.log(fillData(dataFrame));
@@ -32,9 +32,9 @@ let dataFrame = {
 
 let test = ChangeData("tnhoae",1234, add, fillData(dataFrame));
 
-JSONSaver("notsyn",test,"dtf");
+// JSONSaver("./testing/oeuoeoeuoeuyk",test,".dtf");
 
-console.log(test.modules[0]);
+// console.log(test.modules[0]);
 
 
-console.log(test.modules[0].cells[0].pins[0]);
+console.log(findModuleSN("./testing","tnhoae",0));

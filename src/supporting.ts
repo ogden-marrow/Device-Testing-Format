@@ -196,26 +196,24 @@ function findLatestOfModule(Path: string, Board: board, ModNumber: number): boar
 function findModuleSN(Path: string, ESN:string, ModNumber: number): board {
   let dtfFlies = fs.readdirSync(Path).filter(file => file.includes('.dtf'));
   let finalPath: string;
+  let sns: string[];
   let boardTime = 0;
   dtfFlies.forEach(element => {
     let testBoard = findObjectFromPath(Path+"/"+element, "esn", ESN);
     if (typeof (testBoard) != 'undefined') {
       if (Object.keys(testBoard.modules[ModNumber]).length != 0) {
-        if (testBoard.modules[ModNumber].sn != "") {
+        if (testBoard.modules[ModNumber].sn != null) {
           if (testBoard.time > boardTime) {
             finalPath = element;
             boardTime = testBoard.time;
           }
         } else {
-          if (testBoard.time > boardTime) {
-            finalPath = element;
-            boardTime = testBoard.time;
-          }
         }
       }
     }
   });
-  return dtfParse(Path+"/"+finalPath);
+  let newBoard = dtfParse(Path+"/"+finalPath);
+  return newBoard;
 }
 
 function findLatestOfCell(Board: board, ModNumber: number, Cell: number): board {

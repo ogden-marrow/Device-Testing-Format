@@ -19,3 +19,4 @@ dist/
 ./dataFetcher/testing*
 dataFetcher/testing.ts
 notsyndtf
+testing/
