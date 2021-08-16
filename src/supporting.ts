@@ -198,7 +198,7 @@ function findModuleSN(Path: string, ESN:string, ModNumber: number): board {
   let finalPath: string;
   let boardTime = 0;
   dtfFlies.forEach(element => {
-    let testBoard = findObjectFromPath(element, "esn", ESN);
+    let testBoard = findObjectFromPath(Path+"/"+element, "esn", ESN);
     if (typeof (testBoard) != 'undefined') {
       if (Object.keys(testBoard.modules[ModNumber]).length != 0) {
         if (testBoard.modules[ModNumber].sn != "") {
@@ -215,7 +215,7 @@ function findModuleSN(Path: string, ESN:string, ModNumber: number): board {
       }
     }
   });
-  return dtfParse(finalPath);
+  return dtfParse(Path+"/"+finalPath);
 }
 
 function findLatestOfCell(Board: board, ModNumber: number, Cell: number): board {
