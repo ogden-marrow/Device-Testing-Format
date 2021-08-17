@@ -3,4 +3,5 @@ src/
 testing/
 /Users/johnpalenchar/Documents/GitHub/Device-Testing-Format/notsyndtf
 tsconfig.json
+notsyndtf.dtf
 .vscode

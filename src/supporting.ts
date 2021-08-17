@@ -34,7 +34,7 @@ function address(moduleN: number[], cellN?: number[], pinN?: number[]): address 
   return obj;
 }
 
-function fillData(data): updateData {
+function fillData(data: { [s: string]: unknown; } | ArrayLike<unknown>): updateData {
   let upData = {
     StartTime: undefined,
     StopTime: undefined,
@@ -67,7 +67,7 @@ function fillData(data): updateData {
 
 function JSONSaver(FileName: string, json2Parse: any, extension: string) {
   let json = JSON.stringify(json2Parse);
-  fs.writeFile(FileName + extension, json, function (err) { if (err) throw err; });
+  fs.writeFileSync(FileName + extension, json);
 }
 
 function emptyBoard(esn: string, time: number, MSN?: string[]): board {
@@ -213,7 +213,7 @@ function findModuleSN(Path: string, ESN: string, ModNumber: number): board {
       }
     }
   });
-  let newBoard = dtfParse(Path + "/" + finalPath);
+  let newBoard = (finalPath == undefined) ? findFromESN(ESN, Path) : dtfParse(Path + "/" + finalPath);
   return newBoard;
 }
 
