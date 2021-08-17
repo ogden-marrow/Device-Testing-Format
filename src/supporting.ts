@@ -1,6 +1,6 @@
 import { time } from 'console';
 import * as fs from 'fs';
-import { Board, Cell, Module, Pin, board, cell, pin, module } from './dtfDescription';
+import { Board, Cell, Module, Pin, board, cell, pin, module, allPinKeys } from './dtfDescription';
 
 export interface address {
   pin: number[];
@@ -155,6 +155,7 @@ function findFromESN(esn: string, Path: string, Time?: number): board | undefine
   let dtfFlies = fs.readdirSync(Path).filter(file => file.includes('.dtf'));
   if (typeof Time == 'undefined') {
     dtfFlies.forEach(element => {
+      element = Path + "/" + element;
       let testBoard = findObjectFromPath(element, "esn", esn);
       if (typeof (testBoard) != 'undefined') {
         if (testBoard.time > finalBoard.time) {
@@ -165,6 +166,7 @@ function findFromESN(esn: string, Path: string, Time?: number): board | undefine
   }
   else {
     dtfFlies.forEach(element => {
+      element = Path + "/" + element;
       let testBoard = findObjectFromPath(element, "esn", esn);
       if (typeof (testBoard) != 'undefined') {
         if (testBoard.time == Time) {
@@ -193,13 +195,13 @@ function findLatestOfModule(Path: string, Board: board, ModNumber: number): boar
   });
   return dtfParse(finalPath);
 }
-function findModuleSN(Path: string, ESN:string, ModNumber: number): board {
+function findModuleSN(Path: string, ESN: string, ModNumber: number): board {
   let dtfFlies = fs.readdirSync(Path).filter(file => file.includes('.dtf'));
   let finalPath: string;
   let sns: string[];
   let boardTime = 0;
   dtfFlies.forEach(element => {
-    let testBoard = findObjectFromPath(Path+"/"+element, "esn", ESN);
+    let testBoard = findObjectFromPath(Path + "/" + element, "esn", ESN);
     if (typeof (testBoard) != 'undefined') {
       if (Object.keys(testBoard.modules[ModNumber]).length != 0) {
         if (testBoard.modules[ModNumber].sn != null) {
@@ -207,12 +209,11 @@ function findModuleSN(Path: string, ESN:string, ModNumber: number): board {
             finalPath = element;
             boardTime = testBoard.time;
           }
-        } else {
         }
       }
     }
   });
-  let newBoard = dtfParse(Path+"/"+finalPath);
+  let newBoard = dtfParse(Path + "/" + finalPath);
   return newBoard;
 }
 
@@ -233,22 +234,28 @@ function findLatestOfCell(Board: board, ModNumber: number, Cell: number): board 
   });
   return dtfParse(finalPath);
 }
-function findLatestOfPin(Board: board, ModNumber: number, Cell: number, Pin: number): board {
-  let dtfFlies = fs.readdirSync("./").filter(file => file.includes('.dtf'));
-  let finalPath: string;
+
+type numberOrStringArray = string[] | number;
+
+function findLatestOfPinValue(Path: string, ESN: string, ModNumber: number, Cell: number, Pin: number, Key: string): numberOrStringArray {
+  let dtfFlies = fs.readdirSync(Path).filter(file => file.includes('.dtf'));
+  let value: numberOrStringArray;
   let boardTime = 0;
   dtfFlies.forEach(element => {
-    let testBoard = findObjectFromPath(element, "esn", Board.esn);
+    element = Path + "/" + element;
+    let testBoard = findObjectFromPath(element, "esn", ESN);
     if (typeof (testBoard) != 'undefined') {
-      if (Object.keys(testBoard.modules[ModNumber].cells[Cell]).length != 0) {
-        if (testBoard.time > boardTime) {
-          finalPath = element;
-          boardTime = testBoard.time;
+      if (Object.keys(testBoard.modules[ModNumber]).length != 0) {
+        if (Object.keys(testBoard.modules[ModNumber].cells[Cell].pins[Pin]).includes(Key)) {
+          if (testBoard.time > boardTime) {
+            boardTime = testBoard.time;
+            value = testBoard.modules[ModNumber].cells[Cell].pins[Pin][Key];
+          }
         }
       }
     }
   });
-  return dtfParse(finalPath);
+  return value;
 }
 
 function ChangeData(esn: string, time: number, address: address, updateData: updateData) {
@@ -259,7 +266,6 @@ function ChangeData(esn: string, time: number, address: address, updateData: upd
   } else if (address.module) {
     console.log("err");
   } else if (!(address.module == undefined)) {
-
   } else {
     console.log(`there must be a a module number`);
   }
@@ -307,7 +313,7 @@ export {
   findLatestOfModule,
   findObjectFromPath,
   findLatestOfCell,
-  findLatestOfPin,
+  findLatestOfPinValue,
   ChangeData,
   fillData,
   findModuleSN

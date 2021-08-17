@@ -20,6 +20,22 @@ export interface pin {
   Notes: string[],
   Failures: string[]
 }
+let allPinKeys = [
+  "StartTime",
+  'StopTime',
+  'RunTime',
+  'CycleRate',
+  'CycleCount',
+  'UpTiming',
+  'DownTiming',
+  'haltCycles',
+  'HightUp',
+  'HightDown',
+  'PKForce',
+  'TipForce',
+  'Notes',
+  'Failures'
+]
 
 export interface cell {
   pins: pin[]
@@ -84,4 +100,4 @@ function Changes(esn: string, mod: number, cell: number, pin: number, keys?: str
   this.values = values;
 }
 
-export { Pin, Cell, Module, Board, Changes };
+export { Pin, Cell, Module, Board, Changes,allPinKeys };
