@@ -17,21 +17,21 @@ function makeTestingData() {
           module: [i],
         }
         let dataFrame = {
-          StartTime: 56,
-          StopTime: 42,
-          // RunTime: 52,
-          // CycleRate: 35,
-          // CycleCount: 44,
-          // UpTiming: 345,
-          // DownTiming: 4242,
-          // haltCycles: 42424,
-          // HightUp: 347,
-          // HightDown: 23,
-          // PKForce: 45,
-          // TipForce: 27,
-          // Notes: ["test Note"],
-          Failures: ["Something Bad"],
-          // MSN: `${i}`
+          // StartTime: 56,
+          // StopTime: 42,
+          RunTime: 52,
+          CycleRate: 35,
+          CycleCount: 44,
+          UpTiming: 345,
+          DownTiming: 4242,
+          haltCycles: 42424,
+          HightUp: 347,
+          HightDown: 23,
+          PKForce: 45,
+          TipForce: 27,
+          Notes: ["test Note"],
+          // Failures: ["Something Bad"],
+          MSN: `${i}`
         }
 
         let test = ChangeData("tnhoae", TTT, add, fillData(dataFrame));
