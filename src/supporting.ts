@@ -261,7 +261,7 @@ function findLatestOfPinValue(Path: string, ESN: string, ModNumber: number, Cell
 function ChangeData(esn: string, time: number, address: address, updateData: updateData) {
   if (!(address.cell == undefined) && !(address.pin == undefined)) {
     let B = PinChange(esn, time, address, updateData);
-    (updateData.MSN != undefined) ? B.modules[address.module[0]].sn = updateData.MSN : null;
+    (updateData.MSN != undefined || "") ? B.modules[address.module[0]].sn = updateData.MSN : null;
     return B;
   } else if (address.module) {
     console.log("err");
