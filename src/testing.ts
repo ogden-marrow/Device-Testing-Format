@@ -17,21 +17,21 @@ function makeTestingData() {
           module: [i],
         }
         let dataFrame = {
-          // StartTime: 56,
-          // StopTime: 42,
+          StartTime: 76,
+          StopTime: 52,
           RunTime: 52,
-          CycleRate: 35,
-          CycleCount: 44,
-          UpTiming: 345,
-          DownTiming: 4242,
+          CycleRate: 5,
+          CycleCount: 674,
+          UpTiming: 350,
+          DownTiming: 600,
           haltCycles: 42424,
           HightUp: 347,
           HightDown: 23,
           PKForce: 45,
           TipForce: 27,
-          Notes: ["test Note"],
-          // Failures: ["Something Bad"],
-          MSN: `${i}`
+          Notes: ["test Note","some other things about stuff"],
+          Failures: ["Something Bad","all good no bad stuff"],
+          MSN: `${i+2}A`
         }
 
         let test = ChangeData("tnhoae", TTT, add, fillData(dataFrame));
@@ -46,8 +46,10 @@ function makeTestingData() {
 
 // console.log(test.modules[0]);
 
-makeTestingData();
+// makeTestingData();
 
+let timer = Date.now();
 JSONSaver("./notsyndtf", getFullBoard("./testing", "tnhoae"), ".dtf");
+console.log(Date.now()-timer);
 
-console.log(findModuleSN("./testing", "tnhoae", 0));
+// console.log(findModuleSN("./testing", "tnhoae", 0));

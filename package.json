@@ -1,13 +1,13 @@
 {
   "name": "device-testing-format",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "This is main .dtf file type processor.",
   "main": "dist/Main.js",
   "type": "commonjs",
   "types": "dist",
   "scripts": {
     "build": "tsc",
-    "test": "node ./dist/testing.js"
+    "test": "tsc \n node ./dist/testing.js"
   },
   "repository": {
     "type": "git",

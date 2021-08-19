@@ -6,7 +6,7 @@
     "target": "esnext",
     "module": "commonjs",
     "allowJs": true,
-    "watch": true,
+    "watch": false,
     // Generate d.ts files
     "declaration": true,
     "declarationMap": true,
