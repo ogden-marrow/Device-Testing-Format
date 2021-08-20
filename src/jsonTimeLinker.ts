@@ -5,8 +5,6 @@ import { findFromESN, findLatestOfPinValue, findModuleSN, updateData } from './s
 
 function getFullBoard(Path: string, ESN: string): board {
   let stuff = findFromESN(ESN, Path);
-
-  
   let outModules: module[] = [];
   for (let i = 0; i < stuff.modules.length; i++) {
     const module = stuff.modules[i];
